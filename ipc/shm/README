@@ -1,0 +1,15 @@
+ABOUT
+	Simple shared memory example : no synchronisation etc :-)
+
+FILES
+	filler.c   Create a shared memory and fill data into it
+	reader.c   Read data written into shared memory
+	shm_ctl.c  Read info about an existing shared memory
+		   ./shm_ctl -h for more info on options
+	common.h   Some common definitions for the above files
+
+RUNNING
+	make
+	./fl
+	./rd
+	./shm_ctl <options> for some shm oprtations.

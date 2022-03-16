@@ -1,0 +1,26 @@
+ABOUT 
+	This is about pthreads
+
+FILES
+	simple.c 	This just creates a pthread a joins
+			see what happens when you do a ps
+			what happens when one of them exits
+	     other things to try with this file:
+		pthread_self(); returns the threads on pthread_t
+		pthread_equal(pthread_t,pthread_t) compares the two pthread_ts
+		pthread_cancel(pthread_t) cancels 
+			(causes to potentially pthread_exit()) the thread 
+
+
+	prod_con.c	This is an implementation of the producer 
+			consumer problem using pthreads and synchronisation
+
+	     Also uses:
+	     safe_ops.c / safe_ops.h : Simplified implementation of put/get
+
+RUNNING
+	./simple 	for the simple.c example
+
+	./pc		for the producer-consumer example. Change 
+			# threads if you wish by editing prod_con.c
+	

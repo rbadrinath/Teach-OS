@@ -1,0 +1,35 @@
+ABOUT
+	Some miscellaneous files to try things out
+
+FILES
+	check-endian.c		checks the endian-ness of the CPU
+				./check-endian [-]
+
+	gtotd.c			read the comment in the program - to understand vdso
+
+	Trivial programs to try out by disassembling, stracing, ltracing etc
+	     printpid.c
+	     reading.c
+	     fact.c
+	     x.c
+	     y.c
+	        - objdump -d <executable> to see the assembly 
+		  dump of the final executable
+		- also try gcc -S to see the assembly output
+		- look inside this for syscalls
+		- try again with -static compiler option
+
+	Generate exceptions... strace it to see what happened
+             divbyzero.c
+             touch_bad_memory.c
+
+
+Tracing programs:
+	1. strace ./a.out	to see syscalls as they are made
+	2. ltrace -S ./a.out  	to see both library and system calls
+	   NB: gcc -no-pie  while compiling before using ltrace.
+	3. gdb ./a.out
+	
+	
+
+

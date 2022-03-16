@@ -1,0 +1,16 @@
+ABOUT
+	Some miscellaneous files to try things out
+
+FILES
+	check-fileinfo.c  	calls stat to get info about a file
+				./check-fileinfo <filename>
+	flush.c			using fflush, the notion of buffer and flushing
+	file_as_a_lock.c	Using file locking
+	test_link.c             A Simple program to test hard and soft links 
+					: do test_link --help for more info
+	test2_link.c   	        A Simple program to test hard and soft links : 
+					: introduced unlink.... must cleanup
+
+	
+
+

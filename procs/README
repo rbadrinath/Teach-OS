@@ -1,0 +1,8 @@
+duper.c			Experimenting with the dup(fd) to see what happens
+loopy.c			Creating processes that loop with our without sleep to see how they consume cpu. 
+			Also good to check CPU allocation within an autogroup *like created by a TTY.
+simple_exec.c		A first intro to exec()
+simple_fork.c		A first intro to fork()
+shell.c			A very simple shell - combining the above ideas
+zomB.c			To create a zombie process
+reparent.c		To create a process which gets re-parented

@@ -1,0 +1,12 @@
+ABOUT
+	Simple message queue illustration
+
+FILES
+	common.h 	: some common definitions
+	msg_reader.c	: to read from a message queue
+	msg_writer.c	: to write to a message queue
+	msg_ctl.c 	: simple interface to create remove and print msgq info
+RUNNING
+	./rd
+	./wr
+	./msq_ctl -h

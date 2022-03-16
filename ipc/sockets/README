@@ -1,0 +1,8 @@
+ABOUT
+	learning about sockets
+
+FILES
+	tcp_client.c	: A simple TCP client. 
+	tcp_server.c	: A Server.
+	conc_server.c	: A concurrent server.
+
