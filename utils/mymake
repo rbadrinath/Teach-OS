@@ -1,0 +1,40 @@
+#!/bin/bash
+
+CLEAN_FLAG=""
+
+# This function expects a list of directories
+make_in_dir() {
+  if [ $# -eq 0 ]; then
+	  return
+  fi
+  for dir in $* ; do
+     # for each item in the given list of arguments
+     # If it is not a directory just skip, else
+     if [ -d $dir ] ; then
+	 # go into the directory
+         cd $dir
+	 # do a make in that directory if possible
+         if [ -f Makefile ] ; then
+	    echo Making in $dir ....
+	    make $CLEAN_FLAG
+         fi
+	 # recurse on the list of the directory
+         make_in_dir * 
+	 # pop back up
+         cd ..
+     fi
+  done
+}
+
+if [ x"$1" == "xclean" ] ; then
+	CLEAN_FLAG="clean"
+	shift
+else
+	CLEAN_FLAG=""
+fi
+
+echo  Doing make $CLEAN_FLAG in $*
+
+make_in_dir $*
+
+

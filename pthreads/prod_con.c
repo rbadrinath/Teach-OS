@@ -7,7 +7,7 @@
 
 #define SLEEPTIME 1
 #define NUMCONSUMERS 2
-#define NUMPRODUCERS  9
+#define NUMPRODUCERS  5
 
 // Declare all glabal shared stuff
 // 1. Data structure

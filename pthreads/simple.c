@@ -4,13 +4,12 @@
 #include <pthread.h>
 #include <sys/types.h>
 
-#define SLEEPTIME 5
+#define SLEEPTIME 100
 
 int gettid();
 
 void * thread_function(void * tid){
 	printf("T=%d , P=%d sleeping...\n", gettid(), getpid());
-	// exitr(1); 
 	// pthread_exit(NULL);
 	sleep(SLEEPTIME);
 	putchar('_');
