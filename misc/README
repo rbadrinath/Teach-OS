@@ -7,6 +7,8 @@ FILES
 
 	gtotd.c			read the comment in the program - to understand vdso
 
+	address.c		print addresses of functions and variables
+
 	Trivial programs to try out by disassembling, stracing, ltracing etc
 	     printpid.c
 	     reading.c
