@@ -9,6 +9,8 @@ FILES
 
 	address.c		print addresses of functions and variables
 
+	sig.c			simple signal handler example
+
 	Trivial programs to try out by disassembling, stracing, ltracing etc
 	     printpid.c
 	     reading.c
