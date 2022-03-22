@@ -1,6 +1,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include "common.h"
@@ -14,7 +15,10 @@ int main(){
 	while(1) {
 	   string[0][0]='0'+j;
 	   for (int i=0;i<5;i++) {
-		   write(fd,string[i],strlen(string[i]));
+		   if( write(fd,string[i],strlen(string[i]))< 0){
+			   perror("writer write():");
+			   exit(1);
+		   }
 		   // sleep(1);
 	   }
 	   printf("%d\n",j);
