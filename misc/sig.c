@@ -11,11 +11,14 @@ void handler(int signo) {
   g=100;
 }
 
-int main() {
+void set_my_signal(){
   if (signal(SIGUSR1, handler) == SIG_ERR) {
        perror("setting signal failed");
        exit(1);
   }
-  sleep(15);
+}
+int main() {
+  set_my_signal();
+  pause();
   printf("Finished g=%d\n",g);
 }

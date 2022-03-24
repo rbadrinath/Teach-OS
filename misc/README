@@ -11,6 +11,8 @@ FILES
 
 	sig.c			simple signal handler example
 
+	mmap1.c			simple use of mmap with flags
+
 	Trivial programs to try out by disassembling, stracing, ltracing etc
 	     printpid.c
 	     reading.c
