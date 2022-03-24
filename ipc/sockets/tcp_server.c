@@ -22,7 +22,7 @@ int main(int argc, char * argv[]){
 	}
 	//
 	local.sin_family = AF_INET;
-    	local.sin_addr.s_addr = INADDR_ANY;
+    	local.sin_addr.s_addr = htonl(INADDR_ANY);
     	local.sin_port = htons( SRV_PORT );
 
 	r = bind(psock,(struct sockaddr *)&local, sizeof(local));
@@ -55,5 +55,6 @@ int main(int argc, char * argv[]){
 		}
 		printf("Got %2d: %s\n",j,str);
 		j++;
+		close(fsock);
 	}
 }

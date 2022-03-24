@@ -10,7 +10,7 @@ srv: tcp_client.c commons.h
 	gcc -o srv tcp_server.c   
 
 conc: conc_server.c commons.h
-	gcc -o srv conc_server.c   
+	gcc -o conc conc_server.c   
 
 clean:
 	rm -f $(EXECS)
