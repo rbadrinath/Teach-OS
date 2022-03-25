@@ -13,6 +13,8 @@ FILES
 
 	mmap1.c			simple use of mmap with flags
 
+	showlim.c		a program to display configs and limits
+
 	Trivial programs to try out by disassembling, stracing, ltracing etc
 	     printpid.c
 	     reading.c

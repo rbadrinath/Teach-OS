@@ -1,6 +1,6 @@
 CC=gcc
 
-EXEC = check-endian printpid reading x y gtotd touch_bad_memory divbyzero address sig mmap1
+EXEC = check-endian printpid reading x y gtotd touch_bad_memory divbyzero address sig mmap1 showlim
 
 
 all: $(EXEC)
