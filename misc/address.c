@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/mman.h>
 int g=0;
 void main() {
 	int x;
@@ -15,6 +16,10 @@ void main() {
    	printf("a   (stak) is at %p\n",&a);
    	printf("z   (stak) is at %p\n",&z);
 	printf(" ......... you may want to use pmap <PID> to see the address space\n");
+	if ( mlock(a,10) < 0 ){
+		perror("main.mlock():");
+		exit(1);
+	}
 	sleep(10000);
 }
 

@@ -18,6 +18,7 @@ void printhelp(int argc,char * argv[]){
 	printf("Usage: %s [-r|-s] NAME\n",argv[0]);
 	printf("Eg.    %s -s PAGESIZE\n",argv[0]);
 	printf("Eg.    %s -r STACK\n",argv[0]);
+	printf("For more info see -  man sysconf ; and -  man getrlimit\n");
 }
 void syscon(int argc, char * argv[]){
 	long var=-1;

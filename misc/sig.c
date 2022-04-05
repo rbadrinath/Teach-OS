@@ -3,12 +3,12 @@
 #include<unistd.h>
 #include<signal.h>
 
-int g=0;
+int g=99;
 
 void handler(int signo) {
   if (signo ==  SIGUSR1)
     printf("received SIGUSR1 when g=%d\n",g);
-  g=100;
+  g++;
 }
 
 void set_my_signal(){
@@ -19,6 +19,7 @@ void set_my_signal(){
 }
 int main() {
   set_my_signal();
-  pause();
+  printf("g is at %p\n",&g);
+  while(1);
   printf("Finished g=%d\n",g);
 }

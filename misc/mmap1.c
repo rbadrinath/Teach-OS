@@ -38,7 +38,7 @@ int main(){
     	if(fork()==0){ 
 	    	// Child write hello world into the new_region
 	    	printf("In child\n");
-		sleep(1000);
+		pause();
 	    	strcpy(new_region, "hello from child!\n"); 
 	    	exit(0); 
     	}
