@@ -1,5 +1,8 @@
 duper.c			Experimenting with the dup(fd) to see what happens
-loopy.c			Creating processes that loop with our without sleep to see how they consume cpu. 
+loopy.c			Creating processes that loop with or without sleep 
+                              to see how they consume cpu. 
+				we can use ./loopy kernel to force it to consume kernel time.
+				Additionally use it with the time command to see usage
 			Also good to check CPU allocation within an autogroup *like created by a TTY.
 simple_exec.c		A first intro to exec()
 simple_fork.c		A first intro to fork()

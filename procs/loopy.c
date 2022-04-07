@@ -2,19 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 //Possible values for option
 #define BUSY   1
 #define SLEEPY 2
+#define KERNEL 3
 void main(int argc, char ** argv){
 	int option=SLEEPY;
 	// Find and print the option
 	if (argc <= 1 ) 
-		printf("*Too few arguments:  %s [sleepy|busy] \n",argv[0]),
+		printf("*Too few arguments:  %s [sleepy|busy|kernel] \n",argv[0]),
 		exit(1);
 	if (strcmp(argv[1],"busy") == 0 ) 
 		option=BUSY;
-	else 
-		option=SLEEPY;
+	else if (strcmp(argv[1],"kernel") == 0) 
+		option=KERNEL;
 
 	printf("%s = %d\n", argv[1], (int)getpid());
 
@@ -25,11 +28,16 @@ void main(int argc, char ** argv){
 			printf("%s\t%d \n",argv[1],i);
 			sleep(1); 
 			i++;
-		} else { // option is BUSY
+		} else if (option==BUSY) { // option is BUSY
 			//it will simply be running through the loop, consuming cpu
 			//also a great way to see the effect of renice -n 19 -p PID
 			// printf("%s %d ",argv[1],i);
 			// i++;
+			// BUT all this is in user land
+		}else {
+			// make it consume kernel time
+			struct rusage usage;
+			getrusage(RUSAGE_SELF, &usage);
 		}
 	}
 
