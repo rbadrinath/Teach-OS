@@ -15,6 +15,7 @@
 #define MY_RM		6
 #define MY_INFO		7
 
+#define CHECKNEGEXIT( x ) if ( x < 0 ) exit(1); else exit(0);
 
 void print_help(char * argv[]){
 	printf("%s  <option> \n",argv[0]);
@@ -77,39 +78,39 @@ void main(int argc, char * argv[]){
 		case MY_CREATE_NEW:
 		     semid = create_new_sem(key);
 		     printf("semid is %d\n",semid);
-		     return ;
+		     CHECKNEGEXIT(semid) ;
 		case MY_INIT:
 		     semid = get_existing_sem(key);
 		     init_sem(semid,initval);
 		     printf("semid is %d initialized to %d\n",semid,initval);
-		     return ;
+		     CHECKNEGEXIT(semid) ;
 		case MY_VAL:
 		     semid = get_existing_sem(key);
 		     int v = get_val_sem(semid);
 		     printf("semid is %d\n",semid);
 		     printf("semval is %d\n",v);
-		     return ;
+		     CHECKNEGEXIT(semid) ;
 		case MY_UP:
 		     semid = get_existing_sem(key);
 		     free_up(semid);
 		     printf("semid is %d\n",semid);
-		     return;
+		     CHECKNEGEXIT(semid);
 		case MY_DOWN:
 		     semid = get_existing_sem(key);
 		     lock_down(semid);
 		     printf("semid is %d\n",semid);
-		     return;
+		     CHECKNEGEXIT(semid);
 		case MY_RM:
 		     semid = get_existing_sem(key);
 		     remove_sem(semid);
 		     printf("semid is %d\n",semid);
-		     return;
+		     CHECKNEGEXIT(semid);
 		case MY_INFO:
 		     semid = get_existing_sem(key);
 		     get_info_sem(semid, &buf);
 		     printf("semid is %d\n",semid);
 		     print_info(&buf);
-		     return;
+		     CHECKNEGEXIT(semid);
 		default:
 		     printf("unsupported command\n");
 		case HELP:
