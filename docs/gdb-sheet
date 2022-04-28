@@ -1,0 +1,39 @@
+Some useful gdb commands one can use to investigate what the code 
+that is running looks like. In addition to of course debugging real code
+
+NOTE: Before using gdb, make sure to compile code with a '-g' flag and 
+you may want to experiment by turning off optimizations.
+
+SAMPLE RUN WITH A DEBUGGER: (see man gdb)
+  $ gdb ./a.out
+  (gdb) list main		; list the main function
+  (gdb) b main      		; set a breakpoint a main()
+  (gdb) s			; step instruction by instruction through main
+  (gdb) n			; if current line is a  function call 
+				; just finish that and stop at the next line
+ 
+* Listng lines of code:
+  (gdb) list [n] 
+* Listing lines starting at the current ip
+  (gdb) list * $rip
+* looking at assembler code 
+  (gdb) disassemble 		; lists assembly of the current function
+  (gdb) disassemble * $rip
+  (gdb) disassemble <fn>
+* Stack frames listing
+  (gdb) bt
+  (gdb) bt full
+* more informatio with info
+  (gdb) info frame [n]    	; information abouta stack frame (0 is topmost)
+  (gdb) info locals		; information about locals and args
+  (gdb) info args
+* Dumping the contents of memory
+  (gdb) x/nfu <addr>    
+ eg x/20xw $rip           ; examine 20 hexformatted words starting at $rip
+    x/20db $rbp-12        ; useful to examine something moved into $rbp-0xc
+    x/20db 0x55000000     ; dump content of memory byte wise starting at 0x5500
+
+More details list of commands
+	 https://ccrma.stanford.edu/~jos/stkintro/Useful_commands_gdb.html
+Also see a quick overview
+	 https://www.geeksforgeeks.org/gdb-step-by-step-introduction/

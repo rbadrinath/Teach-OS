@@ -1,0 +1,15 @@
+#!/bin/bash
+# simple code to show how piping works and a feel for the way people use it
+
+
+cat x.c | sed s/void/int/
+# More examples on sed, see https://linuxhint.com/50_sed_command_examples/
+# And also https://edoras.sdsu.edu/doc/sed-oneliners.html
+
+
+cat x.c | awk ' { print NR "  :  "  $0 }'
+# Handy awk one-liners https://linoxide.com/useful-awk-one-liners-to-keep-handy/
+
+cat x.c | perl -pE 'BEGIN{say "// Sample header"} END{say "// Sample tail"}'
+# Handy perl stuff https://learnbyexample.github.io/learn_perl_oneliners/one-liner-introduction.html
+
