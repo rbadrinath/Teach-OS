@@ -1,15 +1,23 @@
 #!/bin/bash
 # simple code to show how piping works and a feel for the way people use it
 
-
+# This uses sed to change the first occurrence of  void  to  int
 cat x.c | sed s/void/int/
 # More examples on sed, see https://linuxhint.com/50_sed_command_examples/
 # And also https://edoras.sdsu.edu/doc/sed-oneliners.html
 
 
+# This uses awk to do somehing like cat -n x.c
 cat x.c | awk ' { print NR "  :  "  $0 }'
 # Handy awk one-liners https://linoxide.com/useful-awk-one-liners-to-keep-handy/
 
+# This uses perl to add a line before and after the contents of x.c
 cat x.c | perl -pE 'BEGIN{say "// Sample header"} END{say "// Sample tail"}'
 # Handy perl stuff https://learnbyexample.github.io/learn_perl_oneliners/one-liner-introduction.html
+
+# The next one is NOT a command line pipe, but I find it very useful
+# This copies x.txt to x.txt.back (-i can be used without .bak as well)
+# Then is replaces all occurrences of SMALL by BIG in x.txt
+# The useful thing is it changes x.txt itself, not sending stuff to stdout.
+perl -pi.bak -e s/SMALL/BIG/g x.txt
 
