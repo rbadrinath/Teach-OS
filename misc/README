@@ -15,6 +15,11 @@ FILES
 
 	showlim.c		a program to display configs and limits
 
+	eratoshenes.c		a program to compute primes using two 
+				slightly different implementations.
+				Intention is to show how to use getrusage
+				for timing.
+
 	Trivial programs to try out by disassembling, stracing, ltracing etc
 	     printpid.c
 	     reading.c
