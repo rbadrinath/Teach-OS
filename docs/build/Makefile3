@@ -1,0 +1,52 @@
+# A more DETAILED  Makefile
+# We probably need very little beyond what is here
+# We can always to do with a simpler Makefile
+# ---------------- definitions --------------
+EXEC=hello_world printpid
+CC=gcc
+CFLAGS=
+DEPS = hello_world.h
+# These are the .o files from which 
+#          hello_world executable is built
+HWOBJS= hello_world.o
+
+# These are the .o files from which 
+#          printpid xecutable is built
+POBJS= printpid.o
+
+# ---------------- first target to catch all executables -----
+# default target is this first one 
+all: $(EXEC)
+
+# ---------------- object files --------------
+# This time we first build .o from .c and then create the 
+#      executables from the .o
+# objects(.o) : Here is a tricky shorthand to build all objs
+#      "%.o depends on the corresponding %.c and 
+#      the files listed in DEPS
+#      In the build command
+#      $@ is the left side of the ":"
+#      $< is the first thing on the right of the ":"
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+# ---------------- executables --------------
+#       In the build command note a little trick
+#       The $^ refers to all the stuff on the 
+#       right of the  ":"
+hello_world: $(HWOBJS)
+	$(CC) -o $@ $^
+
+printpid: $(POBJS)
+	$(CC) -o $@ $^
+
+# ---------------- utilities  --------------
+# cleanup utility
+
+clean:
+	rm -f $(EXEC) $(HWOBJS) $(POBJS)
+
+# for fun just try make help
+
+help:
+	echo " make clean     to remove executables, objs \n" "make all       to build executables"

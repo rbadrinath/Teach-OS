@@ -1,0 +1,35 @@
+# A slightly enhanced..
+#     SIMPLE FIRST VERSION OF THE Makefile with some useful
+#     additions 
+#
+# The next few lines are just shorthand definitions, 
+#
+# We want to make two executables
+EXEC=hello_world printpid
+CC=gcc
+
+# ------------- the target and how to make ------------
+
+# The first is always the default target to build
+# lets use this to list all the executables to build
+
+#Target 1
+all: $(EXEC)
+
+# executables : one by one say how to make each executable
+# note that hello_world executable depends on both the
+# hello_world.c and the hello_world.h so we list both files
+# as dependencies.
+# Target 2
+hello_world:  hello_world.c  hello_world.h
+	$(CC) -o hello_world hello_world.c
+
+# Target 3
+printpid: printpid.c
+	$(CC) -o printpid printpid.c
+
+
+# Target 4
+# cleanup utility - quite useful shorthand
+clean:
+	rm -f $(EXEC)

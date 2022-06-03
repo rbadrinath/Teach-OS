@@ -1,0 +1,33 @@
+PURPOSE:
+Provide suidelines to enable students to submit assignments in a uniform way to simplify build and execution:
+
+0. Write a first version of your program and a first version of the Makefile
+   Create the Makefile from the template located in:
+           docs/build/Makefile?
+
+1. Use your makefile while doing your development. (Not as an afterthought!)
+   Often it is good to simply do "make" just to be sure you are 
+   not breaking anything. See the compilation steps in the output to be sure.
+
+2. Once you have done development, testing etc. Then tar things together.
+   tar cvf <target-tarfile> <list of files to combine>
+   tar cvf IMT2019789-Assn1.tar Makefile hello_world.c hello_world.h
+   This combines into the new file     IMT2019789-Add1.tar  
+   all the files listed after, i.e.  Makefile hello_world.c and hello_world.h
+
+3. Test your tar file in a new empty directory: As an example:
+   mkdir /tmp/testdir
+   cp IMT2019789-Assn1.tar /tmp/testdir
+   cd /tmp/testdir
+   tar xvf IMT2019789-Assn1.tar     # Note the "x" in "xvf" it is for extraction
+   make	
+ 
+   It should build properly, and execute properly after that.
+
+4. Submit the tar file  AFTER you are happy your build and execution worked 
+   FROM THE TEST DIRECTORY.
+
+
+   
+
+

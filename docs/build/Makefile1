@@ -1,0 +1,32 @@
+# A SIMPLE FIRST VERSION OF THE Makefile for one executable
+
+
+# ------------- the target and how to make ------------
+
+# Lines come in groups of this form:
+# <TARGET> : <LIST OF FILES IT DEPENDS ON>
+# <TAB>	   <the command to build TARGET>
+# 
+# Wierd:  Did you notice the <TAB> mentioned above????
+
+# In our case:
+# "hello_world" executable depends on
+#        both "hello_world.c" and "hello_world.h" files
+# "hello_world" is built using gcc
+# Target 1
+hello_world:  hello_world.c  hello_world.h
+	gcc -o hello_world hello_world.c
+
+# Did you find the <TAB> in the above example?
+
+# -------------- Here is a useful target -------------
+# cleanup utility - quite useful shorthand
+# Target 2
+clean:
+	rm -f hello_world
+
+# note in the case of target "clean" it has no dependencies which means that it will check nothing and do the command :-)
+#
+# Target 3
+run:
+	./hello_world

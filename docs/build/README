@@ -1,0 +1,23 @@
+PURPOSE:
+   This directory is intended to illustrate usage of Makefile
+The aim is to do just enough to enable the student to start
+using 'make' to build executables on a regular basis
+
+MORE INFORMATION:
+See 'man make' for info on the make command
+See
+      https://www.gnu.org/software/make/manual/html_node/Introduction.html#Introduction
+    for more information on the Makefile format 
+
+FILES:
+
+Makefile1 
+     contains a simple makefile for 
+     building the hello_world program
+
+Makefile2 extends Makefile2 and also builds printpid 
+
+Makefile3
+     Shows some additional tricks typically used to make
+     Makefiles more generic .. often not needed at this level.
+
