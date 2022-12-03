@@ -1,5 +1,5 @@
 Some useful gdb commands one can use to investigate what the code 
-that is running looks like. In addition to of course debugging real code
+that is running looks like, in addition to of course debugging real code.
 
 NOTE: Before using gdb, make sure to compile code with a '-g' flag and 
 you may want to experiment by turning off optimizations.
