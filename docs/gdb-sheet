@@ -5,23 +5,28 @@ NOTE: Before using gdb, make sure to compile code with a '-g' flag and
 you may want to experiment by turning off optimizations.
 
 A SUPER QUICK INTRO with a sample run
+
 Here is a sample run, you should be able to do this with a very simple program,
 perhaps it a main() and one more function with local variables.
-$ gcc -g myprog.c
-$ gdb a.out
-(gdb) l		  # you will see your program source listed
-(gdb) l <funcn>   # will list the mentioned function source
-(gdb) b <lineno>  # set a breakpoint at the mentioned line number
-(gdb) run         # Run the program from beginning and stop at the breakpoint
-(gdb) p <varname> # Use this to inspect the value of a variable
-(gdb) info locals # use this to inspect all locals 
-(gdb) info frame  # Use this to see information about the current stack frame
-(gdb) set variable <varname> = <val> # Use this to assign a value to a variable
-(gdb) n		  # will execute the next line and stop after that
-(gdb) s		  # like n, but if its a call it step into the function and stop
-(gdb) cont        # This will continue execution (like run from current line)
 
-Here are more interesting commands:
+$ gcc -g myprog.c # will compile the program so that you can use gdb on it meaningfully
+$ gdb a.out
+(gdb) l		  # will list program source
+(gdb) l <lineno>  # will list program source from given lineno
+(gdb) l <funcn>   # will list program source from given function
+(gdb) b <lineno>  # set a breakpoint at the given lineno
+(gdb) b <funcn>   # set a breakpoint at the given  function
+(gdb) run         # Run the program from beginning and stop at the next breakpoint
+(gdb) n		  # will execute the current line and stop after that
+(gdb) s		  # like n, but if its a call it steps into the function and stop
+(gdb) p <varname> # will print the value of the given variable
+(gdb) info locals # will print all local and their values 
+(gdb) info frame  # will print information about the current stack frame
+(gdb) set variable <varname> = <val> # will assign a value to a variable
+(gdb) cont        # will continue execution from the current line till the next breakpoint
+
+
+OTHER USEFUL COMMANDS:
  
 * Listng lines of code:
   (gdb) list [n] 
