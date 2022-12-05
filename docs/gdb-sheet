@@ -20,6 +20,7 @@ $ gdb a.out
 (gdb) n		  # will execute the current line and stop after that
 (gdb) s		  # like n, but if its a call it steps into the function and stop
 (gdb) p <varname> # will print the value of the given variable
+(gdb) finish	  # will run to the end of the current function and print the return value
 (gdb) info locals # will print all local and their values 
 (gdb) info frame  # will print information about the current stack frame
 (gdb) set variable <varname> = <val> # will assign a value to a variable
