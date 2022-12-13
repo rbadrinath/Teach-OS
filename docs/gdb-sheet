@@ -22,10 +22,22 @@ $ gdb a.out
 (gdb) p <varname> # will print the value of the given variable
 (gdb) finish	  # will run to the end of the current function and print the return value
 (gdb) info locals # will print all local and their values 
+(gdb) i lo 	  # same as info locals
 (gdb) info frame  # will print information about the current stack frame
+(gdb) i f	  # same as info frame
 (gdb) set variable <varname> = <val> # will assign a value to a variable
 (gdb) cont        # will continue execution from the current line till the next breakpoint
+(gdb) bt <opt>    # will print backtrace ie sequence of frames upto current
+            	  # with <opt> set to  'full' it will print locals too.
 
+
+NB:
+It is also possible to view the program lines as it is running:
+At the gdb prompt say:
+(gdb) tui enable  # At this point you can see a split window showing your program in execution as you type the gdb commands.
+Another way to do this is to use emacs and the M-x gdb command 
+
+ 
 
 OTHER USEFUL COMMANDS:
  
