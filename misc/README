@@ -28,6 +28,7 @@ FILES
 	     y.c
 	        - objdump -d <executable> to see the assembly 
 		  dump of the final executable
+		- objdump -s <executable> to see contents of all sections
 		- also try gcc -S to see the assembly output
 		- look inside this for syscalls
 		- try again with -static compiler option
