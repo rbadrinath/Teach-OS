@@ -8,6 +8,10 @@
 #define BUSY   1
 #define SLEEPY 2
 #define KERNEL 3
+//run this on one terminal with different options
+//on another terminal run top, see where this program is in the list
+//check the amount of time consumed by the PROCESS (%cpu)
+//check also the amount of time the SYSTEM is in user space(us) vs kernel space(sy)
 void main(int argc, char ** argv){
 	int option=SLEEPY;
 	// Find and print the option
@@ -35,7 +39,7 @@ void main(int argc, char ** argv){
 			// i++;
 			// BUT all this is in user land
 		}else {
-			// make it consume kernel time
+			// make it consume kernel time - some syscall
 			struct rusage usage;
 			getrusage(RUSAGE_SELF, &usage);
 		}

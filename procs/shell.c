@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 
 #define COMMAND(X) (strcmp(argv[1],X)==0)
-#define PROMPT "* "
+#define PROMPT "* "	  // The prompt string to be printed each time
 #define MAXLENGTH 1000    // length of a command line
 #define MAXARGS    98 	  // max num of arguments to a command on the command line
 //#define DEBUG 1
