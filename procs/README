@@ -1,7 +1,10 @@
-System Calls
-============
+System Calls and exceptions
+===========================
 syscallC.c		Making a syscall from C calls  WRITE(2)
 syscall.s		Making a syscall from assembly calls WRITE(2) & EXIT(2)
+exceptions.c		Experiment with a few different exceptions,
+				run with strace
+
 
 See Kernel and User space time
 ==============================
@@ -24,6 +27,7 @@ simple_fork.c		A first intro to fork()
 shell.c			A very simple shell - combining the above ideas
 zomB.c			To create a zombie process
 reparent.c		To create a process which gets re-parented
+
 
 Experimenting with fd dup(2)
 ============================

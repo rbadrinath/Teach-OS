@@ -2,7 +2,8 @@ CC=gcc
 CFLAGS= -g
 DEPS = 
 OBJ = 
-EXEC = loopy  shell  simple_exec simple_fork  simple_getpid zomB reparent priority_ops syscallC
+EXEC = loopy  shell  simple_exec simple_fork  simple_getpid \
+       zomB reparent priority_ops syscallC exceptions
 OBJS = loopy.o  shell.o  simple_exec.o  simple_fork.o simple_getpid.o \
        zomB.o reparent.o priority_ops.o syscallC.o syscall.o
 
