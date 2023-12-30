@@ -2,9 +2,9 @@ CC=gcc
 CFLAGS= -g
 DEPS = 
 OBJ = 
-EXEC = loopy  shell  simple_exec simple_fork  test2_link  test_link printpid zomB reparent touch_bad_memory
-OBJS = loopy.o  shell.o  simple_exec.o  simple_fork.o \
-       test2_link.o  test_link.o printpid.o zomB.o reinit.o
+EXEC = loopy  shell  simple_exec simple_fork  simple_getpid zomB reparent priority_ops
+OBJS = loopy.o  shell.o  simple_exec.o  simple_fork.o simple_getpid.o \
+       zomB.o reparent.o priority_ops.o
 
 #OBJS = 
 
@@ -19,7 +19,7 @@ all: all-execs
 
 
 clean:
-	rm -f *.o a.out $(EXEC)
+	rm -f $(OBJ) a.out $(EXEC)
 
 help:
 	echo all-execs/ all-objs /all /clean-all
