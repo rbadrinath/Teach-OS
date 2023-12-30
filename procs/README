@@ -1,11 +1,30 @@
-duper.c			Experimenting with the dup(fd) to see what happens
+System Calls
+============
+syscallC.c		Making a syscall from C calls  WRITE(2)
+syscall.s		Making a syscall from assembly calls WRITE(2) & EXIT(2)
+
+See Kernel and User space time
+==============================
 loopy.c			Creating processes that loop with or without sleep 
-                              to see how they consume cpu. 
-				we can use ./loopy kernel to force it to consume kernel time.
-				Additionally use it with the time command to see usage
-			Also good to check CPU allocation within an autogroup *like created by a TTY.
+                          to see how they consume cpu. 
+			  Use ./loopy sleepy to use sleep(2) to consume 
+								little time.
+			  Use ./loopy busy   to consume all time in user space.
+			  Use ./loopy kernel to force it to consume kernel time.
+			Additionally use it with the time(1) command to see usage
+			You can also use top and ps -l to see time it uses
+			Also good to check CPU allocation within 
+					an autogroup *like created by a TTY.
+
+Using fork(2), exec(2) and wait(2)
+==================================
+simple_getpid.c		Just a call to get the pid
 simple_exec.c		A first intro to exec()
 simple_fork.c		A first intro to fork()
 shell.c			A very simple shell - combining the above ideas
 zomB.c			To create a zombie process
 reparent.c		To create a process which gets re-parented
+
+Experimenting with fd dup(2)
+============================
+duper.c			Experimenting with the dup(fd) to see what happens
