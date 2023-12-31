@@ -6,8 +6,8 @@ exceptions.c		Experiment with a few different exceptions,
 				run with strace
 
 
-See Kernel and User space time
-==============================
+See time spent in Kernel and User mode
+======================================
 loopy.c			Creating processes that loop with or without sleep 
                           to see how they consume cpu. 
 			  Use ./loopy sleepy to use sleep(2) to consume 
@@ -18,6 +18,11 @@ loopy.c			Creating processes that loop with or without sleep
 			You can also use top and ps -l to see time it uses
 			Also good to check CPU allocation within 
 					an autogroup *like created by a TTY.
+
+Getting and setting priority (nice value of a process)
+======================================================
+priority_ops.c
+
 
 Using fork(2), exec(2) and wait(2)
 ==================================
