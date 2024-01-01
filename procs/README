@@ -31,7 +31,11 @@ simple_exec.c		A first intro to exec()
 simple_fork.c		A first intro to fork()
 shell.c			A very simple shell - combining the above ideas
 zomB.c			To create a zombie process
-reparent.c		To create a process which gets re-parented
+fork_and_termC.c	To see what happens when child is terminated 
+				(but not yet reaped)
+fork_and_termP.c	To see what happens when parent is terminated
+reparent.c		To create a process which gets re-parented - 
+				- similar to fork_and_termP.c
 
 
 Experimenting with fd dup(2)
