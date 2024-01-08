@@ -13,7 +13,7 @@
 
         .text
 _start:
-        # write(1, message, 13)		# see man page WRITE(2)
+        # write(1, message, length of message)		# see man page WRITE(2)
         mov     $1, %rax                # system call 1 is write
         mov     $1, %rdi                # file handle 1 is stdout
         mov     $message, %rsi          # address of string to output
