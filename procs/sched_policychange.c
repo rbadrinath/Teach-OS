@@ -89,21 +89,22 @@ void main(int argc, char * argv[]){
 	sched_getparam(0,&param);
 
 	// set scheduler policy and priority
-	printf("Seting policy and priority\n");
+	printf("Setting policy and priority ...\n");
 	param.sched_priority=priority;
 	int ret = sched_setscheduler(0, policy, &param);
+	printf(" ... done. ");
 	show_current_scheduler();
 	if ( ret != 0 ) {
 		 perror("**sched_setscheduler");
 		 exit(1);
 	} 
 	if (limitedtime){
-		printf(" ... done. Now a limited loop\n");
+		printf(" Now a limited loop\n");
 		for(int j=0;j<5;j++)
 		for(int i=0;i<INT_MAX;i++)
 			if (yield ) sched_yield();
 	} else {
-		printf(" ... done. Now in an infinite loop\n");
+		printf(" Now in an infinite loop\n");
 		while ( 1 ) 
 			if (yield ) sched_yield();
 	 }
