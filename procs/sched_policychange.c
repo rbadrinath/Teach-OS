@@ -55,7 +55,8 @@ void parse_args_set_config(int argc, char * argv[]){
 		else
 			show_and_exit("**Bad arg, exit\n");
 	}
-	printf("Setting policy: %d  , priority: %d   , yield: %d \n",policy, priority, yield);
+	printf("Setting policy: %d, priority: %d, yield: %c, timelimit: %c\n",
+			policy, priority, yield?'Y':'N', limitedtime?'Y':'N');
 }
 
 void show_current_scheduler(){

@@ -24,7 +24,7 @@ Getting and setting priorty and scheduling policy
 priority_ops.c
 sched_info.c
 sched_prioritychange.c
-sched_policychange.c
+sched_policychange.c		: use -h  or --help to see what the options are
 
 
 Using fork(2), exec(2) and wait(2)

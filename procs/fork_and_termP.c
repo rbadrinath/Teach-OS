@@ -26,7 +26,6 @@ void main(){
 		kill(parent_pid,SIGTERM);
 		printf("Check that process %d exited\n", parent_pid);
 		getchar();
-		wait(&status);
 	} else {
 		// parent loops indefinitely
 		 while (1) {}
