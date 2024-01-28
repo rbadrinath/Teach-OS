@@ -1,7 +1,6 @@
 CC=gcc
-EXEC = check-fileinfo flush usingdup test_link test2_link file_as_a_lock
-
-##$(EXEC):
+EXEC = check-fileinfo flush usingdup test_link test2_link \
+       file_as_a_lock readfile
 
 all: $(EXEC)
 

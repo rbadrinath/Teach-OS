@@ -6,10 +6,14 @@ FILES
 				./check-fileinfo <filename>
 	flush.c			using fflush, the notion of buffer and flushing
 	file_as_a_lock.c	Using file locking
+	readfile.c		Use open() read() and write() syscalls
+				also tells us a bit more about file descriptors
 	test_link.c             A Simple program to test hard and soft links 
 					: do test_link --help for more info
 	test2_link.c   	        A Simple program to test hard and soft links : 
 					: introduced unlink.... must cleanup
+	usingdup.c		A program to show the effect of using dup
+				instead of open the file twice
 
 	
 
