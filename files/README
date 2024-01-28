@@ -12,6 +12,9 @@ FILES
 					: do test_link --help for more info
 	test2_link.c   	        A Simple program to test hard and soft links : 
 					: introduced unlink.... must cleanup
+
+	pipecmd.c		Use pipe between parent and child using
+				stdin and stdout
 	usingdup.c		A program to show the effect of using dup
 				instead of open the file twice
 
