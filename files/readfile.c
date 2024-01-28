@@ -9,12 +9,11 @@ void main(int argc, char * argv[]){
 	if (argc > 1)
 		strcpy(fname,argv[1]);
 
-	// open same file twice
 	int fd1 = open(fname,O_RDONLY);
+	printf("fd1 is %d\n",fd1);		// expect to see 3
 
-	// read from first fd and print on screen
 	int n = read(fd1,buf,10);
-	write(1,buf,10);
+	write(1,buf,10); // use write(2) to print to the screen
 	
 	close(fd1);
 
@@ -34,7 +33,7 @@ void main(int argc, char * argv[]){
 
 	// Lets try scanf
 	scanf("%s",buf);
-	printf("\n %s \n",buf);
+	printf("\n%s\n",buf);
 
 	// What is your conclusion ?
 */
