@@ -5,6 +5,7 @@ FILES
 	check-fileinfo.c  	calls stat to get info about a file
 				./check-fileinfo <filename>
 	flush.c			using fflush, the notion of buffer and flushing
+	repeated_printf.c	understanding how C library is using buffering
 	file_as_a_lock.c	Using file locking
 	readfile.c		Use open() read() and write() syscalls
 				also tells us a bit more about file descriptors
@@ -13,8 +14,8 @@ FILES
 	test2_link.c   	        A Simple program to test hard and soft links : 
 					: introduced unlink.... must cleanup
 
+	redirect.c		Example using open and dup for redirection
 	pipecmd.c		Use pipe between parent and child using
-				stdin and stdout
 	usingdup.c		A program to show the effect of using dup
 				instead of open the file twice
 
