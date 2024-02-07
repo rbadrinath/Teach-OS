@@ -1,6 +1,6 @@
 CC=gcc
 EXEC = check-fileinfo flush usingdup test_link test2_link \
-       file_as_a_lock readfile pipecmd redirect repeated_printf
+       file_as_a_lock readfile pipecmd redirect repeated_printf flocking
 
 all: $(EXEC)
 

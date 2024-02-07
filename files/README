@@ -13,7 +13,8 @@ FILES
 					: do test_link --help for more info
 	test2_link.c   	        A Simple program to test hard and soft links : 
 					: introduced unlink.... must cleanup
-
+	flocking.c		A simple program to show how locking works
+				To see it work, run two instances of the program				on different windows and see ps -alx
 	redirect.c		Example using open and dup for redirection
 	pipecmd.c		Use pipe between parent and child using
 	usingdup.c		A program to show the effect of using dup
