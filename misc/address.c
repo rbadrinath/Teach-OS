@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/mman.h>
 int g=0;
+int const k=0;
 void main() {
 	int x;
 	int * a;
@@ -15,6 +16,7 @@ void main() {
    	printf("x   (stak) is at %p\n",&x);
    	printf("a   (stak) is at %p\n",&a);
    	printf("z   (stak) is at %p\n",&z);
+   	printf("k   (gl kon) is at %p\n",&k);
 	printf(" ......... you may want to use pmap <PID> to see the address space\n");
 	if ( mlock(a,10) < 0 ){
 		perror("main.mlock():");

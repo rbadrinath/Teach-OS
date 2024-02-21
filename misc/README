@@ -11,6 +11,9 @@ FILES
 
 	sig.c			simple signal handler example
 
+	mmap-simple.c		simple use of mmap  to create anon 
+				and file mapped regions in memory
+			Mmap-test-file: A file used by mmap-simple.c
 	mmap1.c			simple use of mmap with flags
 
 	showlim.c		a program to display configs and limits
