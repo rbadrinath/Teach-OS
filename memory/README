@@ -1,0 +1,14 @@
+
+
+Investiage page virtual address and physical addresses
+------------------------------------------------------
+
+Use pmap `pidof command`    to view the  virtual address space of a running process
+You'll need to do a sudo if the command is not owned by the user
+
+frameit.c              : Adapted from the internet (see file for credits)
+			 It takes and pid and a virtual address and tells us about the corresponding frame
+			 Used with sudo: like     sudo ./frameit   pid  400000    (address is assumed bas 16)
+										  (pid could also be self)
+
+
