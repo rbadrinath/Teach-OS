@@ -107,6 +107,7 @@ int read_pagemap(char * path_buf, unsigned long virt_addr){
    
    printf("Using these parameters to seek into the file:\n");
    printf("    Vaddr: 0x%lx, Page_size: %d, Entry_size: %d\n", virt_addr, getpagesize(), PAGEMAP_ENTRY);
+   printf("Computed VPN: virt_addr / page_size : 0x%lx\n",(unsigned long)virt_addr/getpagesize());
 
    //Shifting by virt-addr-offset number of bytes
    //and multiplying by the size of an address (the size of an entry in pagemap file)
