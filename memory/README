@@ -10,5 +10,6 @@ frameit.c              : Adapted from the internet (see file for credits)
 			 It takes and pid and a virtual address and tells us about the corresponding frame
 			 Used with sudo: like     sudo ./frameit   pid  400000    (address is assumed bas 16)
 										  (pid could also be self)
+			 You can create a fairly large program and see it doesnt have all the pages in the beginning!
 
 
