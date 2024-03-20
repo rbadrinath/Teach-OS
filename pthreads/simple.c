@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -8,12 +9,16 @@
 
 int gettid();
 
+char global[20]="Hello How are you?";
+
 void * thread_function(void * tid){
 	printf("T=%d , P=%d sleeping...\n", gettid(), getpid());
 	// pthread_exit(NULL);
 	sleep(SLEEPTIME);
-	putchar('_');
 	printf("... %d woke up\n", gettid());
+	// to demonstrate they share the same address space
+	strcpy(global,"bye bye"); 
+	printf("Child Wrote:%s\n",global);
 	return NULL ;
 }
 
@@ -26,8 +31,9 @@ int main(int argc, char * argv[]){
 
 	// pthread_cancel(tid);
 	sleep(SLEEPTIME);
-	putchar('1');
+	// Try this for fun for(;;) ;
 	pthread_join(tid,NULL);
+	printf("Parent Sees:%s\n",global);
 	exit(0);
 
 }

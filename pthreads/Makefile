@@ -1,4 +1,4 @@
-EXECS= simple pc
+EXECS= simple pc find_some_primes
 
 all: $(EXECS)
 
@@ -6,6 +6,9 @@ all: $(EXECS)
 # compiling gives a warning, that I neglect
 simple: simple.c
 	gcc -o simple -pthread simple.c
+
+find_some_primes: find_some_primes.c
+	gcc -o find_some_primes -pthread find_some_primes.c -lm
 
 
 pc: prod_con.c safe_ops.c safe_ops.h

@@ -4,13 +4,21 @@ ABOUT
 FILES
 	simple.c 	This just creates a pthread a joins
 			see what happens when you do a ps
+				You can ^Z and then look at ps -eLF
+				Look for the PID/PPID/LWP/NLWP columns
 			what happens when one of them exits
+			
 	     other things to try with this file:
 		pthread_self(); returns the threads on pthread_t
 		pthread_equal(pthread_t,pthread_t) compares the two pthread_ts
 		pthread_cancel(pthread_t) cancels 
 			(causes to potentially pthread_exit()) the thread 
 
+	find_some_primes.c
+			This is two threads - one producing numbers
+			The other checking it is prime
+			Extending this to multiple producers or consumers
+			requires more synchronisation!
 
 	prod_con.c	This is an implementation of the producer 
 			consumer problem using pthreads and synchronisation
