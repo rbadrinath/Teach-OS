@@ -14,6 +14,11 @@ FILES
 		pthread_cancel(pthread_t) cancels 
 			(causes to potentially pthread_exit()) the thread 
 
+	update_balance.c
+			This creates multiple threads to update a balance
+			You can turn on/off mutex
+			You can configure number of threads too
+
 	find_some_primes.c
 			This is two threads - one producing numbers
 			The other checking it is prime
@@ -29,6 +34,14 @@ FILES
 RUNNING
 	./simple 	for the simple.c example
 
+	./update_balance
+			Creates 50 threads by default
+
 	./pc		for the producer-consumer example. Change 
 			# threads if you wish by editing prod_con.c
 	
+	./find_some_primes
+			This will create two threads.
+			You can change MAX to see one of them wait 
+				for the other.
+
