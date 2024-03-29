@@ -107,6 +107,7 @@ int main(int argc, char * argv[]){
 			r=genRN();
 
 
+		pthread_mutex_lock(&mutex);
 		waitforspace_conditionally;
 
 		number[NEXT(front)]=r;
