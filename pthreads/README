@@ -35,6 +35,14 @@ FILES
 			Demonstrates race.
 			nanosleep is used to increase chance of race.
 
+	find_some_primes_mutex.c
+			This is like the above with 2 readers.
+			Demonstrates use of mutex to avoid race.
+
+	find_some_primes_cv.c
+			This is like the above with 2 readers.
+			Demonstrates use of cond vars to avoid busy wait.
+
 	prod_con.c	This is an implementation of the producer 
 			consumer problem using pthreads and synchronisation
 

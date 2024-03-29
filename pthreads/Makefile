@@ -1,4 +1,7 @@
-EXECS= simple pc find_some_primes find_some_primes_2r update_balance update_balance_mutex
+EXECS= simple pc \
+       find_some_primes find_some_primes_2r \
+       find_some_primes_mutex find_some_primes_cv \
+       update_balance update_balance_mutex
 
 all: $(EXECS)
 
@@ -18,6 +21,12 @@ find_some_primes: find_some_primes.c
 
 find_some_primes_2r: find_some_primes_2r.c
 	gcc -o find_some_primes_2r -pthread find_some_primes_2r.c -lm
+
+find_some_primes_mutex: find_some_primes_mutex.c
+	gcc -o find_some_primes_mutex -pthread find_some_primes_mutex.c -lm
+
+find_some_primes_cv: find_some_primes_cv.c
+	gcc -o find_some_primes_cv -pthread find_some_primes_cv.c -lm
 
 pc: prod_con.c safe_ops.c safe_ops.h
 	gcc -o pc -pthread safe_ops.c prod_con.c
