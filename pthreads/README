@@ -16,14 +16,24 @@ FILES
 
 	update_balance.c
 			This creates multiple threads to update a balance
-			You can turn on/off mutex
 			You can configure number of threads too
+			This demonstrates race.
+			nanosleep is introduced to increase chance of race.
+	update_balance_mutex.c
+			You can turn on/off mutex
+			This is used to demonstrate that mutexes avoid
+			race.
 
 	find_some_primes.c
 			This is two threads - one producing numbers
 			The other checking it is prime
 			Extending this to multiple producers or consumers
 			requires more synchronisation!
+
+	find_some_primes_2r.c
+			This like the above but an additional reader.
+			Demonstrates race.
+			nanosleep is used to increase chance of race.
 
 	prod_con.c	This is an implementation of the producer 
 			consumer problem using pthreads and synchronisation
@@ -44,4 +54,11 @@ RUNNING
 			This will create two threads.
 			You can change MAX to see one of them wait 
 				for the other.
+			100 items are output. * indicates non-prime
+	./find_some_primes_2r
+			With nanosleep enabled you can see it 
+			doesn't generate theright count of outputs. 
+			Then careful study shows some are duplicate!
+			Clearly a race on "rear"!
+			
 

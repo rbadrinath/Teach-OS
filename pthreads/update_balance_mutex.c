@@ -17,7 +17,8 @@ int gettid();
 //   into multiple statements
 //#define ONESTATEMENT
 
-
+//
+#define USEMUTEX
 
 struct timespec random_time(){
 	struct timespec ts;
@@ -29,10 +30,23 @@ struct timespec random_time(){
 
 int balance = 0;
 
+#ifdef USEMUTEX
+pthread_mutex_t mymutex;
+void init_mutex(){
+	if (pthread_mutex_init(&mymutex, NULL) != 0) { 
+        	printf("Failed to init mutex\n"); 
+        	exit(1); 
+    	} 
+}
+#endif
 
 void * update_decrementer(void * tid){
 	struct timespec ts=random_time();
 	nanosleep(&ts,NULL);
+
+#ifdef USEMUTEX
+	pthread_mutex_lock(&mymutex);
+#endif
 
 #ifdef ONESTATEMENT
 	balance = balance-100;
@@ -44,12 +58,18 @@ void * update_decrementer(void * tid){
 #endif
 
 
+#ifdef USEMUTEX
+	pthread_mutex_unlock(&mymutex);
+#endif
 	return NULL;
 }
 
 void * update_incrementer( void * tid){
 	struct timespec ts=random_time();
 	nanosleep(&ts,NULL);
+#ifdef USEMUTEX
+	pthread_mutex_lock(&mymutex);
+#endif
 
 
 #ifdef ONESTATEMENT
@@ -61,6 +81,10 @@ void * update_incrementer( void * tid){
 	balance=ax;
 #endif
 
+
+#ifdef USEMUTEX
+	pthread_mutex_unlock(&mymutex);
+#endif
 	return NULL;
 }
 
@@ -70,6 +94,9 @@ int main(int argc, char * argv[]){
 
 	// Initialize
 	srand(getpid());
+#ifdef USEMUTEX
+	init_mutex();
+#endif
 
 	for(int i=0;i<NTHRD;i+=2) {
 		int r = pthread_create(&tid[i],NULL,update_decrementer,(void *)tid[i]);

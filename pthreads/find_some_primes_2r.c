@@ -10,14 +10,21 @@
 #define NEXT(X) ((X==MAX-1) ? 0 :X+1)
 #define END_OF_INPUT -1
 int gettid();
+struct timespec random_time(){
+	struct timespec ts;
+	ts.tv_sec=0;
+        ts.tv_nsec=random()%SLEEPTIME;
+	return ts;
+}
+// Usage:
+//     struct timespec ts=random_time();
+//     nanosleep(&ts,NULL);
+
 
 // Purpose:
-// This program shows how two threads can use a common resource - a 
-// FIFO queue  co-operatively
-// One is a writer( main() ) and one is a reader( read_item() )
-// The writer only modifies "front" and the reader only modifies "rear"
-// They need to co-operate because the queue is small and so it can get full
-
+// This program adds an additional reader to find_some_primes.c
+// use diff find_some_primes.c find_some_primes_2r.c
+// Note that this fails to work as intended!
 // A simple FIFO queue on an array of size MAX
 #define MAX 20 
 int front=0; 
@@ -46,9 +53,11 @@ void * read_items(void * tid){
 	int mytid=gettid();
 	// printf("read_items starting with T=%d\n",mytid);
 	while(1) {
+		struct timespec ts=random_time();
 		wait_for_something;
 
 		int n = number[NEXT(rear)];
+		// nanosleep(&ts,NULL);
 		rear = NEXT(rear);
 
 		// printf("Fetched %d\n",n);
@@ -69,20 +78,21 @@ void * read_items(void * tid){
 //				 if(i==0) printf(".\n")
 
 int main(int argc, char * argv[]){
-	pthread_t tid; // This is not an integer. non portable structure type
+	pthread_t tid[2]; // This is not an integer. non portable structure type
 
 	//printf("main starting with T=%d\n",gettid());
 
-	int r = pthread_create(&tid,NULL,read_items,(void *)tid);
-	if (r !=0 ) {
+	int r1 = pthread_create(&tid[0],NULL,read_items,(void *)tid[0]);
+	int r2 = pthread_create(&tid[1],NULL,read_items,(void *)tid[1]);
+	if (r1 !=0 || r2 !=0 ) {
 		perror("Thread create failed");
 		exit(1);
 	}
-	for(int i=0;i<=100;i++) {
+	for(int i=0;i<=101;i++) {
 
 		// generate the next item to enqueue
 		int r;
-		if (i==100)
+		if (i==100 || i==101)
 			r=END_OF_INPUT;
  		else 
 			r=genRN();
@@ -97,8 +107,9 @@ int main(int argc, char * argv[]){
 	}
 	// printf("main GENERATED, waiting for worker\n");
 
-	r = pthread_join(tid,NULL);
-	if (r !=0 ) {
+	r1 = pthread_join(tid[0],NULL);
+	r2 = pthread_join(tid[1],NULL);
+	if(r1 != 0 || r2 != 0 ) {
 		perror("Thread join failed");
 		exit(1);
 	}
