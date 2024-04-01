@@ -1,0 +1,19 @@
+This contains a simple example to show how shared memory can be used
+between different processes.
+
+The example here uses POSIX shared memory interface.
+
+shm_ctl.c   :  Has individual operations open, close, unlink,
+		It uses ftruncate   and   mmap to create the shared region	
+		in the address space.
+		You can run two instances of this and see how they
+		share space. Use mmap to investigate the mapping
+
+filler.c    : Fills shared memory with some data
+
+reader.c    : Reads and prints what is filled in the shared memory
+
+Usage:
+	./shm_ctl -h
+	./fl		: to run the filler process
+	./rd		: to run the reader process
