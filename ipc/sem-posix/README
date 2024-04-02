@@ -1,0 +1,18 @@
+These examples are about named and unnamed posix semaphores
+
+	pc.c    :	Has a number of threads as producers and consumers
+			for a shared queue structure 
+			You can set NUMPRODUCERS/NUMCONSUMERS
+			Also you can set size of the shared queue
+		Note:	There is a #define NAMED_SEM for chosing which type
+			of semaphore
+			If named semaphore is uses the semaphore is 
+			first removed before it initializes
+	./pc
+
+
+	sem_ctl.c :	This uses named semaphores.
+			And illustrates basic operations.
+
+	./sem_ctl 	
+

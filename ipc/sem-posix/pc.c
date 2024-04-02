@@ -8,12 +8,12 @@
 #include <semaphore.h>
 
 //NAMED_SEM not yet tested
-//#define NAMED_SEM
+#define NAMED_SEM
 
 #define SLEEPTIME 10000
 struct timespec random_time(){
 	struct timespec ts;
-	ts.tv_sec=0;
+	ts.tv_sec=0;        // can try random()%2 for more time spread
         ts.tv_nsec=SLEEPTIME+random()%SLEEPTIME;
 	return ts;
 }
@@ -21,7 +21,7 @@ struct timespec random_time(){
 // nanosleep(&ts,NULL);
 
 
-#define MAX 9
+#define MAX 5
 
 // shared structure which holds all the values in a queue
 struct mystruct {
@@ -43,12 +43,13 @@ sem_t * freesem;
 #define INIT_FREE MAX
 
 #ifdef NAMED_SEM
+// Note:
 #define FREESEM_NAME "/free-sem"
 #define FILLEDSEM_NAME "/filled-sem"
 #endif
 
 // FOR THIS CODE NUMPRODUCERS == NUMCONSUMERS
-#define NUMCONSUMERS 5
+#define NUMCONSUMERS  8
 #define NUMPRODUCERS NUMCONSUMERS 
 
 void initializations(){
@@ -64,6 +65,9 @@ void initializations(){
 	
 	// create semaphores
 #ifdef NAMED_SEM
+	// remove old sem if it exists
+	sem_unlink(FILLEDSEM_NAME);
+	sem_unlink(FREESEM_NAME);
 	filledsem=sem_open(FILLEDSEM_NAME,O_RDWR|O_CREAT,0644,0);
 	if (filledsem == SEM_FAILED ){
 		perror("Filled sem creation");
