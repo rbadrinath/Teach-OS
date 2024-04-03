@@ -39,7 +39,7 @@ int main(int argc, char * argv[]){
 	}
 
 	// set the socket to listening for an incoming connection request
-	r = listen(l_sock,2);
+	r = listen(l_sock,1);
 	if (r < 0 ){
 		perror("listen():");
 		exit(1);
