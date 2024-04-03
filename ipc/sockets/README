@@ -2,7 +2,11 @@ ABOUT
 	learning about sockets
 
 FILES
-	tcp_client.c	: A simple TCP client. 
-	tcp_server.c	: A Server.
-	conc_server.c	: A concurrent server.
+	common.h	: Defines the port number
+	tcp_client.c	: A simple TCP client. Sends only one messages
+	tcp_server.c	: A simple TCP server. Receives one message only 
+						from a client
+	conc_server.c	: A concurrent server. Will send/rcv messages as long
+			   as the client does not close the connection
+	tcp_long_client.c : A TCP client that send multiple messages
 

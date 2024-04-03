@@ -4,57 +4,73 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include "commons.h" 
 
 int main(int argc, char * argv[]){
 	// declare socket vars
-	int psock, fsock;
+	int l_sock, conn_sock;
 	int r;
 	struct sockaddr_in local, remote;
 	int remote_size=sizeof(remote);
 	char str[100];
-	strcpy(str,"Server message\n");
-	//
-	psock=socket(AF_INET, SOCK_STREAM , 0);
-	if (psock < 0 ){
+	char suffix[100]="Sever message  ";
+
+
+	// get an internet socket
+	l_sock=socket(AF_INET, SOCK_STREAM , 0);
+	if (l_sock < 0 ){
 		perror("socket():");
 		exit(1);
 	}
-	//
+
+	// define a structure with a local address and 
+	// parameters for server port
 	local.sin_family = AF_INET;
     	local.sin_addr.s_addr = htonl(INADDR_ANY);
     	local.sin_port = htons( SRV_PORT );
 
-	r = bind(psock,(struct sockaddr *)&local, sizeof(local));
+	// associate the server socket to the address and port above
+	r = bind(l_sock,(struct sockaddr *)&local, sizeof(local));
 	if (r < 0 ){
 		perror("bind():");
 		exit(1);
 	}
-	r = listen(psock,2);
+
+	// set the socket to listening for an incoming connection request
+	r = listen(l_sock,2);
 	if (r < 0 ){
 		perror("listen():");
 		exit(1);
 	}
+
 	//     The below part repeats for each new connection
 	int j=0;
+	int i=0;
 	while(1){
-		fsock=accept(psock,(struct sockaddr *)&remote,&remote_size);
-		if (fsock < 0 ){
+		// wait for a connection ... get a new "full" sock
+		conn_sock=accept(l_sock,(struct sockaddr *)&remote,&remote_size);
+		if (conn_sock < 0 ){
 			perror("accept():");
 			exit(1);
 		}
-		r = send(fsock,str,strlen(str),0);
+		// send
+		sprintf(str,"%s %u %d\n",suffix,getpid(),i++);
+		r = send(conn_sock,str,strlen(str),0);
 		if (r < 0 ){
 			perror("send():");
 			exit(1);
 		}
-		r = recv(fsock,str,100,0);
+		// receive
+		r = recv(conn_sock,str,100,0);
 		if (r < 0 ){
 			perror("recv():");
 			exit(1);
 		}
 		printf("Got %2d: %s\n",j,str);
 		j++;
-		close(fsock);
+		// close the new sock
+		close(conn_sock);
 	}
 }

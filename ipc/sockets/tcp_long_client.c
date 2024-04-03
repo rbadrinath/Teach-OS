@@ -34,21 +34,28 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
 
-	// send
-	r = send(fsock,str,strlen(str),0);
-	if (r < 0 ){
-		perror("send():");
-		exit(1);
+	// send a receive 5 messages on this connection
+	int i=0;
+	while(i < 5 ) {
+	     // send
+	     sprintf(str,"%s %u %d\n",suffix, getpid(),i);
+	     r = send(fsock,str,strlen(str),0);
+	     if (r < 0 ){
+		     perror("send():");
+		     exit(1);
+	     }
+     
+	     // receive
+	     r = recv(fsock,str,100,0);
+	     if (r < 0 ){
+		     perror("recv():");
+		     exit(1);
+	     }
+	     str[r]='\0';
+	     printf("Client recvd: %s\n",str);
+	     i++;
+	     sleep(5);
 	}
-
-	// receive
-	r = recv(fsock,str,100,0);
-	if (r < 0 ){
-		perror("recv():");
-		exit(1);
-	}
-	str[r]='\0';
-	printf("Got: %s\n",str);
 
 	// exit
 	exit(0);  // automatically socket is closed from client end
