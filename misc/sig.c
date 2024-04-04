@@ -20,6 +20,13 @@ void set_my_signal(){
 int main() {
   set_my_signal();
   printf("g is at %p\n",&g);
-  while(1);
+  int x=1;
+  while(1) {
+	  sleep(1);
+	  for(int i=0;i<x;i++) printf(".");
+	  printf("\n");
+	  x++;
+	  if( x > 10 ) x=1;
+  }
   printf("Finished g=%d\n",g);
 }
