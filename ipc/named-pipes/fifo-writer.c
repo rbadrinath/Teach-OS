@@ -5,11 +5,21 @@
 #include <unistd.h>
 #include <string.h>
 #include "common.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-int main(){
+int main(int argc, char * argv[]){
 	int j=0;
-	int fd = open(PIPENAME,O_WRONLY);
+	char pipename[20]=PIPENAME;
+	if (argc >1)
+		strcpy(pipename,argv[1]);
+
+	int fd = open(pipename,O_WRONLY);
+	if ( fd < 0 ) {
+		perror("Open failed");
+		exit(1);
+	}
 	char n[2]=" ";
 	char * string[]={n,"  This ","is ","my ", "sentence","."};
 	while(1) {

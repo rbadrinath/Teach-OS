@@ -7,8 +7,8 @@ FILES
 	common.h 	The fifo is named here
 
 RUNNING
-	./mkfifo <PATHANAME> to create the fifo
-	./rd
-	./wr
+	mkfifo <PATHANAME> to create the fifo eg ./mkfifo  /tmp/myfifo
+	./rd <PATHANAME>
+	./wr <PATHANAME>
 
 	Just for fun see change in behaviour by subsituting the fifo with a normal file
