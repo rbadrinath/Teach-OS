@@ -16,6 +16,7 @@ int main(int argc, char * argv[]){
 	char suffix[100]="Client Message from  ";
 	sprintf(str,"%s %u\n",suffix, getpid());
 	
+	fillzero(server);
 	
 	fsock=socket(AF_INET, SOCK_STREAM , 0);
 	if (fsock < 0 ){

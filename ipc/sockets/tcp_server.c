@@ -18,6 +18,7 @@ int main(int argc, char * argv[]){
 	char suffix[100]="Sever message  ";
 
 
+	fillzero(local);
 	// get an internet socket
 	l_sock=socket(AF_INET, SOCK_STREAM , 0);
 	if (l_sock < 0 ){
@@ -49,6 +50,7 @@ int main(int argc, char * argv[]){
 	int j=0;
 	int i=0;
 	while(1){
+		fillzero(remote);
 		// wait for a connection ... get a new "full" sock
 		conn_sock=accept(l_sock,(struct sockaddr *)&remote,&remote_size);
 		if (conn_sock < 0 ){

@@ -45,7 +45,7 @@ int main(int argc, char * argv[]){
 	int l_sock, conn_sock;
 	int r;
 	struct sockaddr_in local, remote;
-	int remote_size=sizeof(remote);
+	int remote_size;
 	char str[100];
 	strcpy(str,"Server message\n");
 	//
@@ -55,6 +55,7 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
 	//
+	fillzero(local);
 	local.sin_family = AF_INET;
     	local.sin_addr.s_addr = INADDR_ANY;
     	local.sin_port = htons( SRV_PORT );
@@ -71,6 +72,7 @@ int main(int argc, char * argv[]){
 	}
 	//     The below part repeats for each new connection
 	while(1){
+		fillzero(remote); remote_size = sizeof(remote);
 		conn_sock=accept(l_sock,(struct sockaddr *)&remote,&remote_size);
 		if (conn_sock < 0 ){
 			perror("accept():");

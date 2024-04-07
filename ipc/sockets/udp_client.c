@@ -15,7 +15,7 @@ int main() {
 	int sockfd;
 	char rcvstr[BUFFSIZE];
 	char sendstr[50] = "Client Message\n";
-	struct sockaddr_in srv_add, myadd;
+	struct sockaddr_in srv_add;
 	int len;
 		
 	// Creating socket file descriptor
@@ -24,7 +24,8 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 	
-	memset(&srv_add, 0, sizeof(srv_add));
+	//memset(&srv_add, 0, sizeof(srv_add));
+	fillzero(srv_add);
 		
 	// Filling server information
 	srv_add.sin_family = AF_INET;

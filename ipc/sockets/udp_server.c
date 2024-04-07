@@ -24,8 +24,8 @@ int main() {
 		exit(1);
 	}
 
-	memset(&cli_add, 0, sizeof(cli_add));
-	memset(&myadd, 0, sizeof(myadd));
+	fillzero(cli_add);
+	fillzero(myadd);
 		
 	myadd.sin_family = AF_INET;
 	myadd.sin_addr.s_addr = INADDR_ANY;

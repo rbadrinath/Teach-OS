@@ -23,6 +23,7 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
 
+	fillzero(server);
 	server.sin_family = AF_INET;
         server.sin_port = htons(SRV_PORT);
 	server.sin_addr.s_addr = inet_addr("127.0.0.1");
