@@ -1,5 +1,5 @@
 
-EXECS= cl srv conc long_cl us  uc
+EXECS= cl srv conc long_cl udp_s  udp_c  unx_s unx_c
 
 all: $(EXECS)
 
@@ -16,12 +16,18 @@ conc: conc_server.c commons.h
 	gcc -o conc conc_server.c   
 
 
-us: udp_server.c commons.h
-	gcc -o us udp_server.c
+udp_s: udp_server.c commons.h
+	gcc -o udp_s udp_server.c
 
-uc: udp_client.c commons.h
-	gcc -o uc udp_client.c
+udp_c: udp_client.c commons.h
+	gcc -o udp_c udp_client.c
 
+
+unx_s: udp_server.c commons.h
+	gcc -o unx_s udp_server.c
+
+unx_c: udp_client.c commons.h
+	gcc -o unx_c udp_client.c
 
 clean:
 	rm -f $(EXECS)

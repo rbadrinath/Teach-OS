@@ -20,3 +20,7 @@ FILES
   3. UDP
 	udp_server.c	: A simple UDP server
 	udp_client.c	: A simple UDP client
+
+  4. UNIX 
+	unx_server.c	: A simple UNIX SOCK server.
+	unx_client.c	: A simple UNIX SOCK client.
