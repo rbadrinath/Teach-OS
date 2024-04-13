@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "common.h"
 void main(){
 	struct mystruct * s;	
@@ -27,6 +28,7 @@ void main(){
 	} else {
 		printf("Mapped shm to address space; ");
 	}
+	memset(s, 0, sizeof(struct mystruct));
 	s->count=0;
 	srand(time(NULL));
 	int nums=rand()%100; // nums should be a randome from 0..99, say 85

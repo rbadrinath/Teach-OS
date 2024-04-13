@@ -15,5 +15,5 @@ reader.c    : Reads and prints what is filled in the shared memory
 
 Usage:
 	./shm_ctl -h
-	./fl		: to run the filler process
+	./fl		: to run the filler process (good to unlink at start)
 	./rd		: to run the reader process
