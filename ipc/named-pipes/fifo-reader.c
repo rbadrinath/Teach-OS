@@ -16,12 +16,15 @@ int  main(int argc, char * argv[]){
 		perror("open failed");
 		exit(1);
 	}
+	printf("Now reading and printing strings from the pipe:\n");
+	printf("Every read string is printed and *  and newline appear at the end\n");
 	int MAXLEN=100;
 	char string[MAXLEN];
 	while( 1 ) {
-		printf("*\n");
 		int len = read(fd,string,MAXLEN);
-		if (len > 0 ) write(1,string,len);
+		string[len]='*';
+		string[len+1]='\n';
+		if (len > 0 ) write(1,string,len+2);
 		else // Now it is EOF
 		       	break;
 	}

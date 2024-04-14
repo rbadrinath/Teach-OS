@@ -20,10 +20,10 @@ int main(int argc, char * argv[]){
 		perror("Open failed");
 		exit(1);
 	}
-	char n[2]=" ";
-	char * string[]={n,"  This ","is ","my ", "sentence","."};
+	char n[2]=" ";  // this will hold one char '0'..'9'
+	char * string[]={n,"  This ","is ","server ", "sentence","."};
 	while(1) {
-	   string[0][0]='0'+j;
+	   string[0][0]='0'+j;  // each string starts with a sequence digit
 	   for (int i=0;i<5;i++) {
 		   if( write(fd,string[i],strlen(string[i]))< 0){
 			   perror("writer write():");
@@ -31,7 +31,7 @@ int main(int argc, char * argv[]){
 		   }
 		   // sleep(1);
 	   }
-	   printf("%d\n",j);
+	   printf("sent %d\n",j);
 	   j=(j+1)%10;
 	   sleep(2);
 	}

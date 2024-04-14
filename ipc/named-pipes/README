@@ -10,5 +10,8 @@ RUNNING
 	mkfifo <PATHANAME> to create the fifo eg ./mkfifo  /tmp/myfifo
 	./rd <PATHANAME>
 	./wr <PATHANAME>
-
-	Just for fun see change in behaviour by subsituting the fifo with a normal file
+Some experiments:
+	1. Change the writer's sleep value (or remove it)
+	2. Just for fun see change in behaviour by subsituting 
+		the fifo with a normal file
+	
