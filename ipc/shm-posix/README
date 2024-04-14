@@ -16,4 +16,7 @@ reader.c    : Reads and prints what is filled in the shared memory
 Usage:
 	./shm_ctl -h
 	./fl		: to run the filler process (good to unlink at start)
+			 Note: The filler code zeros the shared area before
+			  it fills. So od -x /dev/shm/ex1 shows you the data
+					in hex
 	./rd		: to run the reader process
