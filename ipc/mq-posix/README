@@ -1,0 +1,9 @@
+ABOUT:
+  A very simple example to show message queues can be used to trandfer messages
+  between processes.... unlike pipes which is a stream of data.
+
+  mq_ctl.c : The simple iterative controller program
+	
+
+	./mq_ctl   : Note that you need to read attrutes ( option 'a' ) 
+			before you can successfully receive ( option 'r' )
