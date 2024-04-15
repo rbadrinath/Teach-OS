@@ -14,9 +14,14 @@
 int main() {
 	int sockfd;
 	char rcvstr[BUFFSIZE];
-	char sendstr[50] = "Client Message\n";
+	char sendstr[50] = "Client PID is %d\n";
 	struct sockaddr_in srv_add;
 	int len;
+
+	int pid=(int)getpid();
+	int l =sprintf(sendstr,"Client PID is %d\n",pid);
+	sendstr[l]='\0'; // now it is a string, so we can do strlen
+
 		
 	// Creating socket file descriptor
 	if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {

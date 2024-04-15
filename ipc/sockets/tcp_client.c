@@ -13,7 +13,7 @@ int main(int argc, char * argv[]){
 	int fsock;
 	struct sockaddr_in server;
 	char str[100];
-	char suffix[100]="Client Message from  ";
+	char suffix[50]="Client Message from  ";
 	sprintf(str,"%s %u\n",suffix, getpid());
 	
 	fillzero(server);

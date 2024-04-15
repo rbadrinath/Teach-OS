@@ -4,14 +4,14 @@ ABOUT
 FILES
 	common.h	: Defines the server port number
 
-  Use these in pairs:
+  Use these in groups:
 
-  1. TCP Single send receive
+  1. TCP Single send receive pair
 	tcp_client.c	: A simple TCP client. Sends only one message.
 	tcp_server.c	: A simple TCP server. Receives one message only 
 						from a client.
 
-  2. TCP Send receive until client closes
+  2. TCP Send receive until client closes   - a pair
 	conc_server.c	: A concurrent server. Will send/rcv messages as long
 			   as the client does not close the connection.
 	tcp_long_client.c : A TCP client that send multiple messages.
@@ -19,7 +19,11 @@ FILES
 
   3. UDP
 	udp_server.c	: A simple UDP server
+	udp_echo_server.c : A UDP server that repeatedly 
+			receives from any clients
 	udp_client.c	: A simple UDP client
+			  Can pair this client with one of the above servers
+			
 
   4. UNIX 
 	unx_server.c	: A simple UNIX SOCK server.

@@ -7,8 +7,8 @@
 #include "commons.h" 
 
 void test_send_recv(int conn_sock){
-	char str[100];
-	char suffix[100]="Sever message ";
+	char str[200];
+	char suffix[50]="Sever message ";
 	// send and receive 5 messages
 	int i=0;
 	while(1) {

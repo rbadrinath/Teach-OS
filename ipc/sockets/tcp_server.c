@@ -15,7 +15,7 @@ int main(int argc, char * argv[]){
 	struct sockaddr_in local, remote;
 	int remote_size=sizeof(remote);
 	char str[100];
-	char suffix[100]="Sever message  ";
+	char suffix[50]="Sever message  ";
 
 
 	fillzero(local);

@@ -12,8 +12,8 @@ int main(int argc, char * argv[]){
 	// declare socket vars
 	int fsock;
 	struct sockaddr_in server;
-	char str[100];
-	char suffix[100]="Client Message from  ";
+	char str[200];
+	char suffix[50]="Client Message from  ";
 	sprintf(str,"%s %u\n",suffix, getpid());
 	
 	
