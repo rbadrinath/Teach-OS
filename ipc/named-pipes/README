@@ -4,12 +4,18 @@ ABOUT
 FILES
 	fifo-writer.c	Opens and writes into a fifo
 	fifo-reader.c	Opens and reads from the fifo
+	fifo-re-rw.c    Opens for both reading and writing, done sequentially
 	common.h 	The fifo is named here
 
 RUNNING
+   Expt-1:
 	mkfifo <PATHANAME> to create the fifo eg ./mkfifo  /tmp/myfifo
 	./rd <PATHANAME>
 	./wr <PATHANAME>
+   Expt-2:
+	Independently try out:
+	./both
+
 Some experiments:
 	1. Change the writer's sleep value (or remove it)
 	2. Just for fun see change in behaviour by subsituting 
