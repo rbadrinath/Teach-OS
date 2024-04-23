@@ -10,6 +10,7 @@ FILES
 	address.c		print addresses of functions and variables
 
 	sig.c			simple signal handler example
+	sig2.c			simple signal handler example extended to flip the way SIGUSR1 is handled
 
 	mmap-simple.c		simple use of mmap  to create anon 
 				and file mapped regions in memory
