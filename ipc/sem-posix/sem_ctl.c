@@ -9,11 +9,15 @@
 #include <semaphore.h>
 
 
-#define SEM_NAME "/sem-1"
+// Default semaphore name
+#define DEF_SEM_NAME "/sem-1"
+
 
 void print_help(char * argv[]){
 	printf("%s [-r]    : The optional -r argument means remove the sem\n",argv[0]);
 	printf("option: choose from:\n");
+	printf("    i   n       set initial value for next opento the number n\n");
+	printf("    n   s       set semaphore name to the string s (must follow convention)\n");
 	printf("    o		open sem\n");
 	printf("    p		post sem\n");
 	printf("    w		wait sem\n");
@@ -26,14 +30,16 @@ void print_help(char * argv[]){
 void main(int argc, char *argv[]){
 	sem_t * sem=NULL;
 	int mode=1; // by default initialize
+	unsigned int init_value=0;
+	char sem_name[100]=DEF_SEM_NAME;
 
 	printf("My pid is %d\n",getpid());
-	printf("Using SEM_NAME for operations is = %s\n",SEM_NAME);
+	printf("Using sem_name for operations is = %s\n",sem_name);
 	printf("Get help using \"h\"\n");
 
 	if (argc > 1  && strcmp(argv[1],"-r")==0){
-		printf("Removing existing semaphore, new one will start at 0\n");
-		sem_unlink(SEM_NAME);
+		printf("Removing existing semaphore, new one will start at set initial value[0]\n");
+		sem_unlink(sem_name);
 	} else 
 		printf("Will reuse any existing semaphore\n");
 
@@ -49,10 +55,20 @@ void main(int argc, char *argv[]){
 		continue;
 	}
 
+	if (strcmp(options,"i")==0){
+		scanf("%u",&init_value);
+		continue;
+	}
+
+	if (strcmp(options,"n")==0){
+		scanf("%s",sem_name);
+		continue;
+	}
+
 	if (strcmp(options,"o")==0){
 		// create the new sem assuming it doesnt exist
 
-		sem=sem_open(SEM_NAME,O_RDWR|O_CREAT,0644,0);
+		sem=sem_open(sem_name,O_RDWR|O_CREAT,0644,init_value);
 		if (sem == SEM_FAILED ){
 			perror("Filled sem creation");
 			exit(1);
@@ -91,7 +107,7 @@ void main(int argc, char *argv[]){
 	}
 
 	if (strcmp(options,"u")==0)
-		if ( sem_unlink(SEM_NAME) != 0 )
+		if ( sem_unlink(sem_name) != 0 )
 			perror("unlink failed");
 		else
 			printf("unlinked\n");
