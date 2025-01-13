@@ -1,6 +1,8 @@
 #########################
 # taken from: https://cs.lmu.edu/~ray/notes/gasexamples/
 # See the above site for more on x86-64 assembly
+# On my system the syscall numbers are listed in this file:
+#     /usr/include/x86_64-linux-gnu/asm/unistd_64.h
 # Note: This is pure assembly and uses no C libraries
 # We dont want gcc to invoke ld in the usual way, so compile differently.
 # To compile:
