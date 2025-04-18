@@ -60,13 +60,13 @@ void * read_items(void * tid){
 	// printf("read_items starting with T=%d\n",mytid);
 	while(1) {
 		struct timespec ts=random_time();
-		wait_for_something_mutex;  // does a pthread_mutex_lock()
-
-		int n = number[NEXT(rear)];
-		nanosleep(&ts,NULL);
-		rear = NEXT(rear);
-
-		pthread_mutex_unlock(&mutex);
+		wait_for_something_mutex;    //-does a pthread_mutex_lock()
+						// |
+		int n = number[NEXT(rear)];	// |
+		nanosleep(&ts,NULL);		// |--- this is our CS
+		rear = NEXT(rear);		// |
+						// |
+		pthread_mutex_unlock(&mutex);//-unlocks the mutex
 
 		// printf("Fetched %d\n",n);
 		if ( n == END_OF_INPUT )

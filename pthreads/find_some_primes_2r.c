@@ -13,7 +13,7 @@ int gettid();
 struct timespec random_time(){
 	struct timespec ts;
 	ts.tv_sec=0;
-        ts.tv_nsec=random()%SLEEPTIME;
+        ts.tv_nsec= random()%SLEEPTIME;
 	return ts;
 }
 // Usage:
@@ -57,7 +57,7 @@ void * read_items(void * tid){
 		wait_for_something;
 
 		int n = number[NEXT(rear)];
-		// nanosleep(&ts,NULL);
+		nanosleep(&ts,NULL);
 		rear = NEXT(rear);
 
 		// printf("Fetched %d\n",n);

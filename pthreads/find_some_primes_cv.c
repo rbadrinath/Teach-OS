@@ -58,15 +58,15 @@ void * read_items(void * tid){
 	// printf("read_items starting with T=%d\n",mytid);
 	while(1) {
 		struct timespec ts=random_time();
-		pthread_mutex_lock(&mutex);
-		wait_for_something_conditionally;
-
-		int n = number[NEXT(rear)];
-		nanosleep(&ts,NULL);
-		rear = NEXT(rear);
-
-		pthread_cond_signal(&free_slot);
-		pthread_mutex_unlock(&mutex);
+		pthread_mutex_lock(&mutex);      // |-together these two
+		wait_for_something_conditionally;// |-stmts do cond lock
+						// |
+		int n = number[NEXT(rear)];	// | - CS
+		nanosleep(&ts,NULL);		// |
+		rear = NEXT(rear);		// |
+						// |
+		pthread_cond_signal(&free_slot); // signal condition met
+		pthread_mutex_unlock(&mutex);	 // unlock
 
 		// printf("Fetched %d\n",n);
 		if ( n == END_OF_INPUT )
