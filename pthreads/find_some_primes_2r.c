@@ -54,11 +54,11 @@ void * read_items(void * tid){
 	// printf("read_items starting with T=%d\n",mytid);
 	while(1) {
 		struct timespec ts=random_time();
-		wait_for_something;
+		wait_for_something;          // waiting till queue has a number
 
-		int n = number[NEXT(rear)];
+		int n = number[NEXT(rear)];  // now read the number
 		nanosleep(&ts,NULL);
-		rear = NEXT(rear);
+		rear = NEXT(rear);	     // .. and adjust the rear index
 
 		// printf("Fetched %d\n",n);
 		if ( n == END_OF_INPUT )
@@ -98,10 +98,10 @@ int main(int argc, char * argv[]){
 			r=genRN();
 
 
-		waitforspace;
+		waitforspace;		// wait till there is an empty slot 
 
-		number[NEXT(front)]=r;
-		front=NEXT(front);
+		number[NEXT(front)]=r;  // write the number into the queue
+		front=NEXT(front);	// .. and adjust the front index
 
 		// printf("Pushed %d\n",r);
 	}
