@@ -43,6 +43,13 @@ FILES
 			This is like the above with 2 readers.
 			Demonstrates use of cond vars to avoid busy wait.
 
+	find_some_primes_cv_many.c
+			This is like the above, using cv.
+			code is rewritten a bit.
+			Deals with an arbitrary number of readers and
+				writers.
+			Demonstrates use of cond_broadcast.
+
 	prod_con.c	This is an implementation of the producer 
 			consumer problem using pthreads and synchronisation
 
