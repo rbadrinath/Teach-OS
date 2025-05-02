@@ -27,6 +27,7 @@ FILES
 			receives from any clients
 	udp_client.c	: A simple UDP client
 			  Can pair this client with one of the above servers
+        NOTE: One could also use nc -u 127.0.0.1 9999 as a client
 			
 
   4. UNIX 
