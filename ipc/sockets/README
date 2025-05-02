@@ -6,6 +6,10 @@ FILES
 
   Use these in groups:
 
+  0. A simple client and server using a utility called netcat (or nc)
+     simple_tcp_server.sh : This is the server, will listen for connections
+     simple_tcp_client.sh : This is the client, will make connections
+
   1. TCP Single send receive pair
 	tcp_client.c	: A simple TCP client. Sends only one message.
 	tcp_server.c	: A simple TCP server. Receives one message only 
