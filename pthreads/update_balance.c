@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <math.h>
+#include <assert.h>
 
 #define SLEEPTIME 10000
 #define MAX 20 
@@ -15,8 +16,10 @@ int gettid();
 //Normally balance=balance-100 is one statement
 //However to illustrate the problem better we can break it up 
 //   into multiple statements
-//#define ONESTATEMENT
-
+#define ONESTATEMENT
+//
+//Defined this to see threads before they exit too soon
+//#define WATCH_PS
 
 
 struct timespec random_time(){
@@ -43,7 +46,10 @@ void * update_decrementer(void * tid){
 	balance=ax;
 #endif
 
-
+#ifdef WATCH_PS
+	// Wait a bit before proceeding so you can ps -eLF and see the threads
+	sleep(20);
+#endif
 	return NULL;
 }
 
@@ -61,6 +67,10 @@ void * update_incrementer( void * tid){
 	balance=ax;
 #endif
 
+#ifdef WATCH_PS
+	// Wait a bit before proceeding so you can ps -eLF and see the threads
+	sleep(20);
+#endif
 	return NULL;
 }
 
@@ -70,6 +80,10 @@ int main(int argc, char * argv[]){
 
 	// Initialize
 	srand(getpid());
+
+	// Expect NTHRD to be even
+	assert(NTHRD%2==0);
+
 
 	for(int i=0;i<NTHRD;i+=2) {
 		int r = pthread_create(&tid[i],NULL,update_decrementer,(void *)tid[i]);

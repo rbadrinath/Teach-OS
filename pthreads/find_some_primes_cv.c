@@ -51,7 +51,14 @@ int isprime(int n) {
 	pthread_cond_wait(&free_slot,&mutex) 
 pthread_cond_t free_slot;
 pthread_cond_t filled_slot;
+// Global mutex and initializing code
 pthread_mutex_t mutex;
+void init_mutex(){
+	if (pthread_mutex_init(&mutex, NULL) != 0) { 
+        	printf("Failed to init mutex\n"); 
+        	exit(1); 
+    	} 
+}
 
 void * read_items(void * tid){
 	int mytid=gettid();
@@ -91,6 +98,7 @@ int main(int argc, char * argv[]){
 
 	//printf("main starting with T=%d\n",gettid());
 
+	init_mutex();
 	int r1 = pthread_create(&tid[0],NULL,read_items,(void *)tid[0]);
 	int r2 = pthread_create(&tid[1],NULL,read_items,(void *)tid[1]);
 	if (r1 !=0 || r2 !=0 ) {
