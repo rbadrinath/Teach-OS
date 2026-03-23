@@ -48,9 +48,21 @@ int isprime(int n) {
 }
 
 #define wait_for_something_conditionally   while(front == rear) \
-	pthread_cond_wait(&free_slot,&mutex) 
+	pthread_cond_wait(&filled_slot,&mutex) 
+
+// Global CVs and initialization code
 pthread_cond_t free_slot;
 pthread_cond_t filled_slot;
+void init_cvs(){
+	if (pthread_cond_init(&free_slot,NULL) != 0 ){
+		perror("Failed to initialize CV: free_slot\n");
+		exit(1);
+	}
+	if (pthread_cond_init(&filled_slot,NULL) != 0 ){
+		perror("Failed to initialize CV: free_slot\n");
+		exit(1);
+	}
+}
 // Global mutex and initializing code
 pthread_mutex_t mutex;
 void init_mutex(){
@@ -72,8 +84,8 @@ void * read_items(void * tid){
 		nanosleep(&ts,NULL);		// |
 		rear = NEXT(rear);		// |
 						// |
-		pthread_cond_signal(&free_slot); // signal condition met
 		pthread_mutex_unlock(&mutex);	 // unlock
+		pthread_cond_signal(&free_slot); // signal condition met
 
 		// printf("Fetched %d\n",n);
 		if ( n == END_OF_INPUT )
@@ -99,6 +111,7 @@ int main(int argc, char * argv[]){
 	//printf("main starting with T=%d\n",gettid());
 
 	init_mutex();
+	init_cvs();
 	int r1 = pthread_create(&tid[0],NULL,read_items,(void *)tid[0]);
 	int r2 = pthread_create(&tid[1],NULL,read_items,(void *)tid[1]);
 	if (r1 !=0 || r2 !=0 ) {
@@ -121,8 +134,8 @@ int main(int argc, char * argv[]){
 		number[NEXT(front)]=r;
 		front=NEXT(front);
 
-		pthread_cond_signal(&filled_slot);
 		pthread_mutex_unlock(&mutex);
+		pthread_cond_signal(&filled_slot);
 
 		// printf("Pushed %d\n",r);
 	}
