@@ -2,7 +2,8 @@ EXECS= simple pc \
        find_some_primes find_some_primes_2r \
        find_some_primes_mutex find_some_primes_cv \
        find_some_primes_cv_many \
-       update_balance update_balance_mutex
+       update_balance update_balance_mutex \
+       bf
 
 all: $(EXECS)
 
@@ -34,6 +35,10 @@ find_some_primes_cv_many: find_some_primes_cv_many.c
 
 pc: prod_con.c safe_ops.c safe_ops.h
 	gcc -o pc -pthread safe_ops.c prod_con.c
+
+bf: bf.c 
+	gcc -o bf -pthread bf.c
+
 
 clean:
 	rm -f $(EXECS) a.out

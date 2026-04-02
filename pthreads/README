@@ -56,6 +56,10 @@ FILES
 	     Also uses:
 	     safe_ops.c / safe_ops.h : Simplified implementation of put/get
 
+	bf.c		This implements a distributed Bellman-Ford, but using pthreads to simulate different nodes
+	input_bf	This is a sample input to bf.c
+
+
 RUNNING
 	./simple 	for the simple.c example
 
@@ -75,5 +79,10 @@ RUNNING
 			doesn't generate theright count of outputs. 
 			Then careful study shows some are duplicate!
 			Clearly a race on "rear"!
+	./bf <input_bf
+			This will create the number of thread mentioned
+			in the first line of the input file and use the
+			edge weight/cost matrix defined in hte remaining rows
+	
 			
 
