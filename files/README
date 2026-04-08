@@ -6,15 +6,18 @@ FILES
 				./check-fileinfo <filename>
 	flush.c			using fflush, the notion of buffer and flushing
 	repeated_printf.c	understanding how C library is using buffering
-	file_as_a_lock.c	Using file locking
+	file_as_a_lock.c	Using open() with O_EXCL|O_CREAT to implement lock()
+				and corresponding unlink () to implement unlock()
 	readfile.c		Use open() read() and write() syscalls
 				also tells us a bit more about file descriptors
 	test_link.c             A Simple program to test hard and soft links 
 					: do test_link --help for more info
 	test2_link.c   	        A Simple program to test hard and soft links : 
 					: introduced unlink.... must cleanup
-	flocking.c		A simple program to show how locking works
-				To see it work, run two instances of the program				on different windows and see ps -alx
+	flocking.c		A simple program to show how file flock works
+				To see it work, run two instances of the program
+				on different windows and see ps -alx
+				Also see commands lsof and lslocks
 	redirect.c		Example using open and dup for redirection
 	pipecmd.c		Use pipe between parent and child using
 	usingdup.c		A program to show the effect of using dup

@@ -5,8 +5,21 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <errno.h>
+// Main idea:
+//      create a new non-existing file in "O_EXCL" mode.
+//	This does not mean anyone else cannot open/read or write.
+//	It only means it will fail if it already exists
+//	Thus the creating of the file itself is the lock() operation
+//
+//	As a corollary removing the file is as good as  unlock() operation
+//
+//	Notice that THIS IS NOT FOR EXCLUSIVELY READING/WRITING A FILE !!
+//	The idea is to use this as a lock for mutual exclusion to another resource.
+//
+
 // Global
 static char * lockfile="lockfile";
+// This is the mutex_lock() equivalent
 int create_and_acquire_lock(int *fd){
 	// return value 
 	//       0  succesfully created, fd is the file descriptor
@@ -30,6 +43,8 @@ void remove_lockfile(){
 		exit(1);
 	}
 }
+
+// This is the mutex_unlock() equivalent
 void delete_and_release_lock(int fd){
 	close(fd);
 	remove_lockfile(); // cheating
