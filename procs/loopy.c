@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+#include <sched.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +14,29 @@
 //on another terminal run top, see where this program is in the list
 //check the amount of time consumed by the PROCESS (%cpu)
 //check also the amount of time the SYSTEM is in user space(us) vs kernel space(sy)
+
+// Uncomment this if you do want to force affinity to a CPU
+//#define AFFINITY_CPU 0    
+
+void affinity_settings(){
+#ifdef AFFINITY_CPU
+    cpu_set_t mask;
+
+    // 1. Clear the CPU set
+    CPU_ZERO(&mask);
+
+    // 2. Add the given target CPU core to the set
+    CPU_SET(AFFINITY_CPU, &mask);
+
+    // 3. Apply the mask to the current calling process (PID 0)
+    if (sched_setaffinity(0, sizeof(cpu_set_t), &mask) == -1) {
+        perror("sched_setaffinity failed! EXITING**!");
+        exit(1);
+    }
+    printf("This process is now running on CPU %d\n",AFFINITY_CPU);
+#endif
+}
+
 void main(int argc, char ** argv){
 	int option=SLEEPY;
 	// Find and print the option
@@ -26,6 +51,8 @@ void main(int argc, char ** argv){
 	printf("%s = %d\n", argv[1], (int)getpid());
 
 	int i=0;
+
+	affinity_settings();
 	while (1) { // An infinite loop
 		if (option==SLEEPY) {
 			//  a "sleepy" process will be in sleep most of the time, waiting for a second to pass

@@ -19,6 +19,10 @@ loopy.c			Creating processes that loop with or without sleep
 			Also good to check CPU allocation within 
 					an autogroup *like created by a TTY.
 
+
+			You can also select CPU affinity by defining 
+			    AFFINITY_CPU in the source. See the code.
+			Use pidstat -p pidnumber 1 to check the CPU it is on
 Getting and setting priorty and scheduling policy
 ======================================================
 priority_ops.c
