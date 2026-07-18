@@ -33,7 +33,7 @@ void affinity_settings(){
         perror("sched_setaffinity failed! EXITING**!");
         exit(1);
     }
-    printf("This process is now running on CPU %d\n",AFFINITY_CPU);
+    printf("This process will now run on CPU %d\n",AFFINITY_CPU);
 #endif
 }
 
