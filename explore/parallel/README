@@ -1,0 +1,11 @@
+parallel/
+ms.c : Mergesort - uses fork and does the two parts using child/parent
+	you can 
+		readelf -W -a a.out 
+	to see the sections segments, their mappings and program headers
+
+	See the difference between -static and the default dynamic
+		the sections .symtba and .string
+		the sections .dynsym and .dynstr
+ass/
+

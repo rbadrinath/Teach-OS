@@ -1,0 +1,7 @@
+parallel/
+	Shows how to do mergesort in parallel using parents and children
+as1/
+	Shows how to understand C and assembly and the interface
+	Also a good exploration of the object file using readelf
+	and some exploration of the process using gdb
+

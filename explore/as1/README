@@ -1,0 +1,28 @@
+There are two files to demonstrate c assembly working together
+a_gcd.s : Assembly for a gcd computation
+main.c : C code that calls gcd
+
+Compilation:
+	gcc a_gcd.s main.c	
+
+There is another c_gcd.c : The same code as a_gcd.s but written in C
+	It is written so that you can map variable names and registers
+
+
+Do the following to see the code in the executable:
+readelf -W -a a.out > ELF
+In objdump -d a.out look for  gcd 
+	See the code matching what is in a_gcd.s
+	Notice how the jump address got determined
+	Notice parameters and return value
+
+In this ELF file  look for the info on gcd and main - should be in the same address
+Also od -x a.out -N 20 -j <<address_of_gcd>>  a.out
+	This will show the same code just in binary
+
+Also do the following
+gdb a.out     (clearly you cant find the c code because no -g given)
+However you can do the following
+(gdb) disass /r gcd			( the /r is to see the binary code)
+Notice the code that we wrote for gcd
+Notice the address is different!
