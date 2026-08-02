@@ -2,11 +2,16 @@
 
 # Some useful info about x86-64:
 # Often the way code is written the operations are on values in registers
-# rax (a) holds reults of many arith ops
-#     (b) holds the function return value
-# rdi and rsi contain the first and second argument respectively
-# rcx is used as a loop counter or some kind of loop control
-
+# You will see a lot of references to items starting with '%r...'.  These are all registers.
+# The registers you see in the code below are described here:
+#    rax (a) holds results of many arith ops
+#        (b) holds the function return value
+#    rdi and rsi contain the first and second argument respectively
+#    rcx is used as a loop counter or some kind of loop control
+# Instructions that have a 'q' in the end indicate 64-bit operations.
+#
+# Aim is to (a) see some code in assembly  and (b) do some code explorations
+#
 .global gcd
 .type gcd, @function
 
