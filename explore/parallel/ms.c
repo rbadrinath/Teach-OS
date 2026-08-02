@@ -50,7 +50,7 @@ void mergesort(int *a, int size){ //a[0]..a[size-1] is size elements
 	
 	int mid = size/2;	// note size is 3 or more
 
-/*
+/* (1) parallel part starts ...
 	int mypipe[2];
 	if ( pipe(mypipe) ) {		// check the return value!!
 		perror("Error opening pipe\n");
@@ -64,7 +64,7 @@ void mergesort(int *a, int size){ //a[0]..a[size-1] is size elements
 		// sort a[0]..a[mid-1]
 */
 		mergesort(a,mid);
-/*
+/* (2) parallel part starts ...
 		// send back the result to the parent
 		printf("DEBUG: Child writing to pipe %ld\n",sizeof(int)*mid);
 		int k = write(mypipe[WR], a, sizeof(int)*mid);
@@ -79,7 +79,7 @@ void mergesort(int *a, int size){ //a[0]..a[size-1] is size elements
 */
 	// sort a[mid]..a[size-1]
 	mergesort(&a[mid],size-mid); // a[mid]...a[size-1] is size-mid elements
-/*
+/* (3) parallel part starts ...
 	// read results from the child for the first part
 	int nbytes=0;
 	while (1) {
@@ -103,11 +103,13 @@ void mergesort(int *a, int size){ //a[0]..a[size-1] is size elements
 int main(){
 	int a[100];
 	int n;
-	printf("%d\n",funglobal);
+	printf("My pid is %d\n",(int ) getpid());
+	printf("%d\n Give me the number of items to sort, followed by the list of times: ",funglobal);
 	scanf("%d",&n);
 	for(int i=0;i<n;i++)
 		scanf("%d",&a[i]);
 	mergesort(a,n);
 	for(int i=0;i<n;i++)
 		printf("%d ",a[i]);
+	printf("\n");
 }

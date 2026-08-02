@@ -5,8 +5,8 @@ main.c : C code that calls gcd
 Compilation:
 	gcc a_gcd.s main.c	
 
-There is another c_gcd.c : The same code as a_gcd.s but written in C
-	It is written so that you can map variable names and registers
+There is another c_gcd.c : C version of the above assembly.
+	The idea is so that you can map variable names and registers
 
 
 Do the following to see the code in the executable:

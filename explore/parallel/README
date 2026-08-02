@@ -1,11 +1,20 @@
-parallel/
+
 ms.c : Mergesort - uses fork and does the two parts using child/parent
-	you can 
+        Note - lots of stuff is commented out - making it sequential
+	You may want to copy it to par.c and then remove those comments between /* ... */  to make it parallel
+
+	See how fork and exec are used. 
+	See relationship of parallel code to the sequential code
+
+	Put some sleeps (1) before child returns  (2) before main calls mergesort
+	In another window see the pstree
+
+ Additionally, you can 
 		readelf -W -a a.out 
 	to see the sections segments, their mappings and program headers
 
 	See the difference between -static and the default dynamic
 		the sections .symtba and .string
 		the sections .dynsym and .dynstr
-ass/
 
+dgen.sh : A bash script to generate a large input to ms.c
