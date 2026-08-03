@@ -30,6 +30,8 @@ loopy.c (again)		You can select CPU affinity by defining
 			    AFFINITY_CPU in the source. See the code.
 			Use pidstat -p pidnumber 1 to check the CPU it is on
 			Another way to set affinity is using taskset(1)
+affinity.c					: no options show you the options
+	This shows another way to set affinity. Use this to get/set affinity of some other process
 
 Using fork(2), exec(2) and wait(2)
 ==================================
