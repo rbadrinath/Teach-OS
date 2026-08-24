@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <threads.h>
 
 // Exploring sections
 
@@ -23,6 +24,9 @@ void testaddress(int a, int b, int c){
 	return;
 }
 
+// into TLS .tdata or .tbss depending on the initialization
+//thread_local int globalx=5;
+
 void main(int argc, char *argv[]){
 	int i,j,k;
 	printf("Experiment:\n");
@@ -36,6 +40,7 @@ void main(int argc, char *argv[]){
 	//getchar();
 	printf("Big malloc at:     %p\n",malloc(256*1024));
 	printf("main locals: %p %p %p\n",&i,&j,&k);
+	// printf("GlobalT :%p\n",&globalx);
 	testaddress(i,j,k);
 	sleep(300);
 }
