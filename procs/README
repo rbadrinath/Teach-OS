@@ -8,6 +8,9 @@ exceptions.c		Experiment with a few different exceptions,
 
 See time spent in Kernel and User mode
 ======================================
+io_and_times.c  run this program like $ time ./io_and_times
+                Also run after making some suggestions in the code
+				Explain the results.
 loopy.c			Creating processes that loop with or without sleep 
                           to see how they consume cpu. 
 			  Use ./loopy sleepy to use sleep(2) to consume 
