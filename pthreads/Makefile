@@ -3,7 +3,7 @@ EXECS= simple pc \
        find_some_primes_mutex find_some_primes_cv \
        find_some_primes_cv_many \
        update_balance update_balance_mutex \
-       bf
+       bf drawingpth
 
 all: $(EXECS)
 
@@ -38,6 +38,9 @@ pc: prod_con.c safe_ops.c safe_ops.h
 
 bf: bf.c 
 	gcc -o bf -pthread bf.c
+
+drawingpth: drawingpth-1.c
+	gcc drawingpth-1.c -o drawingpth -lSDL2 -lpthread -lm
 
 
 clean:

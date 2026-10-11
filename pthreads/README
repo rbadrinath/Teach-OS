@@ -14,6 +14,18 @@ FILES
 		pthread_cancel(pthread_t) cancels 
 			(causes to potentially pthread_exit()) the thread 
 
+	drawing-1.c  This is a graphics program using SDL2 
+	        It creates multiple threads to populate pixel values 
+			parallely. Read it to understand simple
+			synchronozation among threads
+			It can be improved in a couple of ways:
+			     Can you just create all threads only once and
+				 do some synchronization so that they move in lock-step
+				 - this would avoid the overhead of repeatedly creating 
+				   threads
+				 Can you look at the code and see if some recomputations
+				 can be avoided.
+				 Do these changes and see if it improves performance.
 	update_balance.c
 			This creates multiple threads to update a balance
 			You can configure number of threads too
