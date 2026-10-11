@@ -14,7 +14,7 @@ FILES
 		pthread_cancel(pthread_t) cancels 
 			(causes to potentially pthread_exit()) the thread 
 
-	drawing-1.c  This is a graphics program using SDL2 
+	drawingpth-1.c  This is a graphics program using SDL2 
 	        It creates multiple threads to populate pixel values 
 			parallely. Read it to understand simple
 			synchronozation among threads
@@ -71,6 +71,12 @@ FILES
 	bf.c		This implements a distributed Bellman-Ford, but using pthreads to simulate different nodes
 	input_bf	This is a sample input to bf.c
 
+	petersons.c This is a simple attempt to create an implementation of 
+				Petersons algorithm extended to arbitrary number of threads
+				 - perhaps not very efficient. Can you improve it
+				   in any way?
+
+   sleeplib.c  Some code to quickly recall how to use nanosleep
 
 RUNNING
 	./simple 	for the simple.c example
@@ -95,6 +101,12 @@ RUNNING
 			This will create the number of thread mentioned
 			in the first line of the input file and use the
 			edge weight/cost matrix defined in hte remaining rows
+	
+	./drawingpth [nthreads]
+			Will  run the threads parallely to render two sinusoidals
+
+	./petersons [nthreads]
+			Will run the generalized Petersons algorithm for mutual excl
 	
 			
 

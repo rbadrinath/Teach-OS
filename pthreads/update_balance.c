@@ -16,7 +16,7 @@ int gettid();
 //Normally balance=balance-100 is one statement
 //However to illustrate the problem better we can break it up 
 //   into multiple statements
-#define ONESTATEMENT
+//#define ONESTATEMENT
 //
 //Defined this to see threads before they exit too soon
 //#define WATCH_PS
@@ -48,7 +48,7 @@ void * update_decrementer(void * tid){
 
 #ifdef WATCH_PS
 	// Wait a bit before proceeding so you can ps -eLF and see the threads
-	sleep(20);
+	sleep(60);
 #endif
 	return NULL;
 }

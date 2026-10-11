@@ -3,7 +3,7 @@ EXECS= simple pc \
        find_some_primes_mutex find_some_primes_cv \
        find_some_primes_cv_many \
        update_balance update_balance_mutex \
-       bf drawingpth
+       bf drawingpth petersons
 
 all: $(EXECS)
 
