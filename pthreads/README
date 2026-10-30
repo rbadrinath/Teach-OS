@@ -51,6 +51,10 @@ FILES
 			This is like the above with 2 readers.
 			Demonstrates use of mutex to avoid race.
 
+   count_enter.c
+   			This demonstrates a simple use of condition variables
+			to allow only a certain number of thread to enter the CS.
+
 	find_some_primes_cv.c
 			This is like the above with 2 readers.
 			Demonstrates use of cond vars to avoid busy wait.

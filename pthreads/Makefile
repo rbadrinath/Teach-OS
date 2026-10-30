@@ -1,6 +1,7 @@
 EXECS= simple pc \
        find_some_primes find_some_primes_2r \
        find_some_primes_mutex find_some_primes_cv \
+	   count_enter \
        find_some_primes_cv_many \
        update_balance update_balance_mutex \
        bf drawingpth petersons
@@ -26,6 +27,9 @@ find_some_primes_2r: find_some_primes_2r.c
 
 find_some_primes_mutex: find_some_primes_mutex.c
 	gcc -o find_some_primes_mutex -pthread find_some_primes_mutex.c -lm
+
+count_enter: count_enter.c
+	gcc -o count_enter -pthread count_enter.c -lm
 
 find_some_primes_cv: find_some_primes_cv.c
 	gcc -o find_some_primes_cv -pthread find_some_primes_cv.c -lm
