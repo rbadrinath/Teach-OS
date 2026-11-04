@@ -56,3 +56,7 @@ reparent.c		To create a process which gets re-parented -
 Experimenting with fd dup(2)
 ============================
 duper.c			Experimenting with the dup(fd) to see what happens
+
+Writing assembly code embedded in C safely using gcc C extensions
+=================================================================
+cassembly.c		Has a bunch of functions written in C to embed assembly

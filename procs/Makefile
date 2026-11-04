@@ -15,9 +15,14 @@ all-execs: $(EXEC) assembly
 
 all: all-execs 
 
-assembly: 
+assembly: syscall cassembly
+
+syscall:
 	gcc -c syscall.s
 	ld -o syscall syscall.o
+
+cassembly:
+	gcc -o cassembly cassembly.c
 
 clean:
 	rm -f $(OBJS) a.out $(EXEC) syscall 
