@@ -21,6 +21,7 @@ int  main(int argc, char * argv[]){
 	int MAXLEN=100;
 	char string[MAXLEN];
 	while( 1 ) {
+		// getchar();  // uncomment this to manually control when the reader progresses
 		int len = read(fd,string,MAXLEN);
 		string[len]='*';
 		string[len+1]='\n';
