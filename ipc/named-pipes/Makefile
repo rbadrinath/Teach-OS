@@ -1,5 +1,5 @@
 
-EXECS= rd wr both
+EXECS= rd wr both fifo2-reader
 
 all: $(EXECS)
 
@@ -11,6 +11,9 @@ wr: fifo-writer.c common.h
 
 both: fifo-re-wr.c
 	gcc -o both fifo-re-wr.c
+
+fifo2-reader: fifo2-reader.c common.h
+	gcc -o fifo2-reader fifo2-reader.c
 
 #just for fun
 fifo: 

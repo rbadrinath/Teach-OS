@@ -6,15 +6,22 @@ FILES
 	fifo-reader.c	Opens and reads from the fifo
 	fifo-re-rw.c    Opens for both reading and writing, done sequentially
 	common.h 	The fifo is named here
+	fifo2-reader.c  Opens two fifos for reading and writing and does a poll() to check which to read from
 
 RUNNING
    Expt-1:
-	mkfifo <PATHANAME> to create the fifo eg ./mkfifo  /tmp/myfifo
+	mkfifo <PATHANAME> to create the fifo eg ./mkfifo  /tmp/myfifo; sleeptime controls sleep between writes
 	./rd <PATHANAME>
-	./wr <PATHANAME>
+	./wr <PATHANAME> [sleeptime]
    Expt-2:
 	Independently try out:
 	./both
+   Expt-3
+     mkfifo /tmp/fifo1
+	 mkfifo /tmp/fifo2
+     ./wr /tmp/fifo1       and     ./wr /tmp/fifo2    on two terminals
+	 ./fifo2-reader /tmp/fifo1  /tmp/fifo2  on another terminal
+
 
 Some experiments:
 	1. Change the writer's sleep value (or remove it)
