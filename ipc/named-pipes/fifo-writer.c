@@ -8,12 +8,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#define WR_SLEEP 2
 
 int main(int argc, char * argv[]){
 	int j=0;
 	char pipename[20]=PIPENAME;
+	int sleeptime;
 	if (argc >1)
 		strcpy(pipename,argv[1]);
+	if (argc >2)
+		sleeptime=atoi(argv[2]);
+	else
+		sleeptime=WR_SLEEP;
 
 	int fd = open(pipename,O_WRONLY);
 	if ( fd < 0 ) {
@@ -33,6 +39,6 @@ int main(int argc, char * argv[]){
 	   }
 	   printf("sent %d\n",j);
 	   j=(j+1)%10;
-	   sleep(2);
+	   sleep(sleeptime);
 	}
 }
