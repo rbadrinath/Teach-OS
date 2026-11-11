@@ -12,4 +12,5 @@ frameit.c              : Adapted from the internet (see file for credits)
 										  (pid could also be self)
 			 You can create a fairly large program and see it doesnt have all the pages in the beginning!
 
-
+fault_experiment.c		: (with help from Gemini)
+						Tries to capture timings (in cycles) for different kind of memory access cases

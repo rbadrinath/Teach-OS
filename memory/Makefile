@@ -1,5 +1,5 @@
 CC=gcc
-EXEC = frameit
+EXEC = frameit fault_experiment
 
 #OBJS = 
 
