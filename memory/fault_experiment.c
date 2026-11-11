@@ -13,6 +13,7 @@ static inline uint64_t rdtsc_start(void) {
     __asm__ __volatile__ (
         "lfence\n\t"          // Serialize: wait for prior instructions to finish
         "rdtsc\n\t"           // Read 64-bit timestamp counter into EDX:EAX
+		"lfence\n\t"          // additional safety
         : "=a" (lo), "=d" (hi)
         :
         : "memory"
@@ -23,7 +24,7 @@ static inline uint64_t rdtsc_start(void) {
 static inline uint64_t rdtsc_end(void) {
     uint32_t lo, hi;
     __asm__ __volatile__ (
-        "rdtscp\n\t"          // Read counter and wait for prior instructions
+        "rdtscp\n\t"          // Wait for prior instructions to complete and then read counter 
         "lfence\n\t"          // Prevent subsequent instructions from executing early
         : "=a" (lo), "=d" (hi)
         :
