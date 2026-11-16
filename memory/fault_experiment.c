@@ -14,9 +14,10 @@ static inline uint64_t rdtsc_start(void) {
         "lfence\n\t"          // Serialize: wait for prior instructions to finish
         "rdtsc\n\t"           // Read 64-bit timestamp counter into EDX:EAX
 		"lfence\n\t"          // additional safety
-        : "=a" (lo), "=d" (hi)
+        : "=a" (lo), "=d" (hi)  // copy output EAX to lo and EDX to hi
         :
-        : "memory"
+        : "memory"            // Dont add EDX, EAX, - already in output
+					  // memory prevents compiler from  reordering
     );
     return ((uint64_t)hi << 32) | lo;
 }
@@ -25,10 +26,11 @@ static inline uint64_t rdtsc_end(void) {
     uint32_t lo, hi;
     __asm__ __volatile__ (
         "rdtscp\n\t"          // Wait for prior instructions to complete and then read counter 
-        "lfence\n\t"          // Prevent subsequent instructions from executing early
-        : "=a" (lo), "=d" (hi)
+        "lfence\n\t"          // Prevents CPU from brining later instructions before this
+        : "=a" (lo), "=d" (hi) // copy output EAX to lo and EDX to hi
         :
         : "rcx", "memory"     // rdtscp also writes processor ID to ECX/RCX
+					  // memory prevents compiler from reordering
     );
     return ((uint64_t)hi << 32) | lo;
 }
@@ -54,20 +56,20 @@ int main(void) {
     }
 
     // 2. Measure the first access (triggers a minor page fault - must allocate physical page)
-    uint64_t start_fault = rdtsc_start();
+    uint64_t start_min = rdtsc_start();
     page[0] = 42; 
-    uint64_t end_fault = rdtsc_end();
+    uint64_t end_min = rdtsc_end();
 
     // 3. Measure a second access to the same page (no page fault, cache hit)
-    uint64_t start_hit = rdtsc_start();
+    uint64_t start_csh = rdtsc_start();
     page[1] = 43;
-    uint64_t end_hit = rdtsc_end();
+    uint64_t end_csh = rdtsc_end();
 
     // 4. Measure a third access to the same page and uncached data (no page fault, cache miss)
 	flush_cpu_cache(page); // explicitly uncache the data
-    uint64_t start_cd = rdtsc_start();
+    uint64_t start_unc = rdtsc_start();
     int t2 = page[0];
-    uint64_t end_cd = rdtsc_end();
+    uint64_t end_unc = rdtsc_end();
 
 
     munmap(page, page_size);
@@ -94,10 +96,10 @@ int main(void) {
     char t3 = mem[0];
     uint64_t end_dsk = rdtsc_end();
 
-    printf("Page fault access cycles   : %lu\n", end_fault - start_fault);
-    printf("Cached memory hit cycles   : %lu\n", end_hit - start_hit);
-    printf("Uncached memory hit cycles : %lu\n", end_cd - start_cd);
-    printf("page from disk cycles      : %lu\n", end_dsk - start_dsk);
+    printf("Page fault, (majflt)from disk : %lu\n", end_dsk - start_dsk);
+    printf("Page fault, (minflt)anonymous : %lu\n", end_min - start_min);
+    printf("No page fault, uncached memory: %lu\n", end_unc - start_unc);
+    printf("No page fault, cached memory  : %lu\n", end_csh - start_csh);
 	
     return 0;
 }
